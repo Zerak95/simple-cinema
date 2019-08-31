@@ -14,7 +14,9 @@
   <body>
 
     <header>
-      <div>Put company logo and name here</div>
+      <!-- <div>Put company logo and name here</div> -->
+      <div><img src='../../media/RMIT-Logo.png' alt='RMIT University logo' height=80 />Lunardo Cinema
+      </div>
     </header>
 
     <nav>
