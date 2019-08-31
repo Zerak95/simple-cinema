@@ -7,7 +7,7 @@
     
     <!-- Keep wireframe.css for debugging, add your css to style.css -->
     <link id='wireframecss' type="text/css" rel="stylesheet" href="../wireframe.css" disabled>
-    <link id='stylecss' type="text/css" rel="stylesheet" href="css/style.css">
+    <link id='stylecss' type="text/css" rel="stylesheet" href="style.css">
     <script src='../wireframe.js'></script>
   </head>
 
@@ -20,7 +20,9 @@
     </header>
 
     <nav>
-      <div>Put website navigation links here</div>
+        <li><a href="#Now Showing" >Now Showing</a></li>
+        <li><a href="#Prices" >Prices</a></li>
+        <li><a href="#About Us" >About Us</a></li>
     </nav>
 
     <main>
@@ -28,6 +30,7 @@
     <!-- Creative Commons image sourced from https://pixabay.com/en/maintenance-under-construction-2422173/ and used for educational purposes only -->
         <img src='../../media/website-under-construction.png' alt='Website Under Construction' />
       </article>
+      
     </main>
 
     <footer>
