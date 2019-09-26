@@ -15,20 +15,20 @@ window.onscroll = function () {
 
     // var sections = this.document.querySelectorAll("section");
 
-    console.log(window.scrollY);
+    // console.log(window.scrollY);
     clearActiveNav()
 
 
-    
+
     // makes sure that areas abouve or bellow the sections do not highlight the navbar
     while (n < sections.length - 1 && sections[n + 1].offsetTop <= window.scrollY &&
         (sections[sections.length - 1].offsetTop + sections[sections.length - 1].scrollHeight) > window.scrollY) {
-        
-        
-            
-        console.log("n  before incroment is: " + n);
+
+
+
+        // console.log("n  before incroment is: " + n);
         n++;
-        console.log("n is: " + n);
+        // console.log("n is: " + n);
 
         if (n >= 0) {
             clearActiveNav()
@@ -42,7 +42,40 @@ window.onscroll = function () {
         // }
 
     }
-
-
-
 }
+
+function showSynopsis(id) {
+    hideAllSynopsis();
+    var x = document.getElementById(id);
+    x.style.display = "block";
+}
+
+function hideSynopsis(id) {
+    var x = document.getElementById(id);
+    x.style.display = "none";
+}
+
+function hideAllSynopsis() {
+    hideSynopsis("synopsisACT");
+    hideSynopsis("synopsisRMC");
+    hideSynopsis("synopsisANM");
+    hideSynopsis("synopsisAHF");
+}
+
+var avengersPoster = document.getElementById("avengersPoster");
+avengersPoster.addEventListener('click', event => {showSynopsis("synopsisACT")});
+
+var topEndWeddingPoster = document.getElementById("topEndWeddingPoster");
+topEndWeddingPoster.addEventListener('click', event => {showSynopsis("synopsisRMC")});
+
+
+
+var dumboPoster = document.getElementById("dumboPoster");
+dumboPoster.addEventListener('click', event => {showSynopsis("synopsisANM")});
+
+
+
+var theHappyPrincePoster = document.getElementById("theHappyPrincePoster");
+theHappyPrincePoster.addEventListener('click', event => {showSynopsis("synopsisAHF")});
+
+// topEndWeddinPoster.addEventListener('click',showSynopsis('synopsisRMC'));

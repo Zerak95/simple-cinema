@@ -9,14 +9,14 @@
 
 
 
-.header {
+header {
     width: 100%;
     height: 80px;
     display: block;
     background-color: #101010
 }
 
-.inner-header {
+#innerHeader {
     max-width: 1000px;
     height: 100%;
     display: block;
@@ -24,14 +24,14 @@
     background-color: red;
 }
 
-.logo-container {
+#logoContainer {
     height: 100%;
     display: table;
     float: left;
 }
 
 
-.logo-container h1 {
+#logoContainer h1 {
     color: white;
     height: 100%;
     display: table-cell;
@@ -42,17 +42,17 @@
     font-weight: 200;
 }
 
-.logo-container h1 span {
+#logoContainer h1 span {
     font-weight: 800;
 
 }
 
-.logo-container .logo-image{
+#logoImage{
     max-width: 100%;
     max-height: 80px;
 }
 
-.navigation-container {
+nav {
     width: 100%;
     height: 80px;
     display: block;
@@ -92,7 +92,7 @@
 
 
 
-.price-info {
+.infoDiv {
     background-color:white;
     font-size:26px;
     font-family: 'Montserrat';
@@ -100,7 +100,7 @@
     min-height: 200px;
 }
 
-.price-info .mkt-image {
+.mktImage {
     display: block;
     max-width: 100%;
     /* max-height: 200px; */
@@ -108,13 +108,13 @@
 
 }
 
-.price-info p {
+.infoDiv p {
     font-family: 'Montserrat';
     font-size: 26px;
-    text-align: left !important;
+    text-align: left;
 }
 
-.price-info p {
+.infoDiv p {
     font-family: 'Montserrat';
     font-size: 26px;
     text-align: left;
@@ -128,14 +128,14 @@
 
 }
 
-#prices .price-info {
+#prices .infoDiv {
     min-height: auto;
     padding: 10px 50px;
 
     border: 1px solid #d4d4d4;
 }
 
-.content-section {
+.parallaxScrolling {
   background-image: url("../../media/total-cinema.jpg");
 
   height: 500px; 
@@ -148,14 +148,14 @@
 } 
 
 
-h2.price-main {
+h2.priceMain {
     font-family: 'Montserrat';
     font-size: 26px;
     font-weight: 800;
 }
 
-p.price-subtitle,
-p.price-number {
+p.priceSubtitle,
+p.priceNumber {
     font-family: 'Montserrat';
     font-size: 18px;
     font-weight: 200;
@@ -167,28 +167,28 @@ p.price-number {
 
 
 @media only screen and (min-width: 1113px) {  
-    p.price-number {
-        text-align: right !important;
+    p.priceNumber {
+        text-align: right;
     }
 }
 
 @media only screen and (max-width: 1114px) {
     h1 {
         padding-bottom: 30px;
-        text-align: center !important;
+        text-align: center;
     }
-    h2.price-main {
-         text-align: center !important;
+    h2.priceMain {
+         text-align: center;
     }
-  p.price-subtitle,
-    p.price-number {
+  p.priceSubtitle,
+    p.priceNumber {
     width: 100%;
     display: block;
-    text-align: center !important;
+    text-align: center;
   }
 }
 
-p.text-muted {
+p.textMuted {
     font-family: 'Montserrat';
     font-size: 14px;
     font-weight: 200;
@@ -231,11 +231,7 @@ p.text-muted {
   padding: 0 10px;
 }
 
-.full-column {
-    float: center;
-    width: 100%;
-    padding: 0 10px;
-  }
+
 
 /* Remove extra left and right margins, due to padding */
 .row {margin: 3px -5px;}
@@ -256,11 +252,21 @@ p.text-muted {
   }
 }
 
-/* Style the counter cards */
-.card {
+.movieRating{
+    text-align: right;
+    float:right;
+}
+
+.plotDescription {
+    float: center;
+    width: 100%;
+    padding: 0 10px;
+}
+
+/* Style the counter movieCards */
+.movieCard {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 16px;
-  text-align: center;
   background-color: #f1f1f1;
   min-height: 330px;
   border: 2px solid rgb(58, 35, 35);
@@ -272,20 +278,20 @@ p.text-muted {
   background-color: #f1f1f1;
 }
 
-.card .column h3 {
+.movieCard .column h3 {
     font-family: 'Montserrat';
     font-size: 20px;
     font-weight: 800;
     margin-bottom: 20px;
 }
 
-.card .column p {
+.movieCard .column p {
     font-family: 'Montserrat';
     font-size: 16px;
     margin-bottom: 10px;
 }
 
-.button {
+.movieTimeButton {
     background-color: #1d699a;
     border: none;
     color: white;
@@ -296,15 +302,32 @@ p.text-muted {
     margin: 4px 2px;
 }
 
-.plot-description{
+.movieCard .plotDescription{
     font-family: 'Montserrat';
     font-size: 16px;
     text-align: left;
 }
 
-.plot-description-h3{
+
+.movieCard .row .column h3{
     font-family: 'Montserrat';
     font-size: 20px;
     text-align: left;
+}
+
+#synopsisRMC{
+    display: none;
+}
+
+#synopsisACT{
+    display: none;
+}
+
+#synopsisANM{
+    display: none;
+}
+
+#synopsisAHF{
+    display: none;
 }
 
