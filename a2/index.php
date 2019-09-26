@@ -21,14 +21,14 @@
         </div>
     </header>
     <nav class="navigation-container">
-        <ul class="navigation">
-            <a href="#about">
+        <ul id="navigation">
+            <a class="navLink" href="#about">
                 <li>About US</li>
             </a>
-            <a href="#prices">
+            <a class="navLink" href="#prices">
                 <li>Prices</li>
             </a>
-            <a href="#showing">
+            <a class="navLink" href="#showing">
                 <li>Now Showing</li>
             </a>
         </ul>
@@ -36,21 +36,21 @@
 
     <section id="about" class="content-container">
         <div class="content-section"></div>
-        <div class="content-stuff">
+        <div class="price-info">
             <p>With our grand reopening, we have improved our theatres by incorporating the new 3D Dolby Vision
                 projection and
                 Dolby Atmos sound systems:</p>
             <img src="../../media/mtk-image.jpg" alt="" class="mkt-image" />
         </div>
         <div class="content-section"></div>
-        <div class="content-stuff">
+        <div class="price-info">
             <p> We also improved our seating arraignments for both the Standard and First Class seats:</p>
             <p>Standard Seats</p>
             <img src="../../media/normal-chairs.jpg" alt="" class="mkt-image" />
 
         </div>
         <div class="content-section"></div>
-        <div class="content-stuff">
+        <div class="price-info">
             <p>First Class Seats</p>
             <img src="../../media/Verona-Twin.png" alt="" class="mkt-image" />
             <img src="../../media/firstclass-person.png" alt="" class="mkt-image" />
@@ -61,7 +61,7 @@
 
     <section id="prices" class="price-container">
         <h1>Prices</h1>
-        <div class="content-stuff">
+        <div class="price-info">
 
             <h2 class="price-main">Standard Adult STA</h2>
             <p class="price-subtitle">Monday, Wednesday (ALL DAY) + 12PM other Weekdays</p>
@@ -70,7 +70,7 @@
             <p class="price-number">AUD 19.80</p>
             <p class="text-muted"></p>
         </div>
-        <div class="content-stuff">
+        <div class="price-info">
             <h2 class="price-main">Standard Concession STP</h2>
             <p class="price-subtitle">Monday, Wednesday (ALL DAY) + 12PM other Weekdays</p>
             <p class="price-number">AUD 12.50</p>
@@ -78,7 +78,7 @@
             <p class="price-number">AUD 17.50</p>
             <p class="text-muted"></p>
         </div>
-        <div class="content-stuff">
+        <div class="price-info">
             <h2 class="price-main">Standard Child STC</h2>
             <p class="price-subtitle">Monday, Wednesday (ALL DAY) + 12PM other Weekdays</p>
             <p class="price-number">AUD 11.00</p>
@@ -86,7 +86,7 @@
             <p class="price-number">AUD 15.30</p>
             <p class="text-muted"></p>
         </div>
-        <div class="content-stuff">
+        <div class="price-info">
             <h2 class="price-main">First Class Adult FCA</h2>
             <p class="price-subtitle">Monday, Wednesday (ALL DAY) + 12PM other Weekdays</p>
             <p class="price-number">AUD 24.00</p>
@@ -94,7 +94,7 @@
             <p class="price-number">AUD 30.00</p>
             <p class="text-muted"></p>
         </div>
-        <div class="content-stuff">
+        <div class="price-info">
             <h2 class="price-main">First Class Concession FCP</h2>
             <p class="price-subtitle">Monday, Wednesday (ALL DAY) + 12PM other Weekdays</p>
             <p class="price-number">AUD 22.50</p>
@@ -102,7 +102,7 @@
             <p class="price-number">AUD 27.00</p>
             <p class="text-muted"></p>
         </div>
-        <div class="content-stuff">
+        <div class="price-info">
             <h2 class="price-main">First Class Child FCC</h2>
             <p class="price-subtitle">Monday, Wednesday (ALL DAY) + 12PM other Weekdays</p>
             <p class="price-number">AUD 21.00</p>
@@ -286,7 +286,7 @@
 
         </div>
 
-
+        <script type="text/javascript" src="script.js"></script>
     </section>
 
     <footer class="footer">
