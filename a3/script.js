@@ -48,34 +48,58 @@ function showSynopsis(id) {
     hideAllSynopsis();
     var x = document.getElementById(id);
     x.style.display = "block";
+
+    // put in a seperate function
+    tempSynopsisID = id;
+    tempMovieName = document.querySelector("#" + CSS.escape(tempSynopsisID) + " .movieName").textContent;
+    document.getElementById("movieTitle").innerHTML = tempMovieName;
 }
 
 function hideSynopsis(id) {
     var x = document.getElementById(id);
     x.style.display = "none";
+    // console.log("hiding: " + id);
 }
 
 function hideAllSynopsis() {
-    hideSynopsis("synopsisACT");
-    hideSynopsis("synopsisRMC");
-    hideSynopsis("synopsisANM");
-    hideSynopsis("synopsisAHF");
+    movieSynopsisAreas.forEach(element => {
+        hideSynopsis(element);
+    });
+
+    // hideSynopsis("synopsisACT");
+    // hideSynopsis("synopsisRMC");
+    // hideSynopsis("synopsisANM");
+    // hideSynopsis("synopsisAHF");
 }
 
 var avengersPoster = document.getElementById("avengersPoster");
-avengersPoster.addEventListener('click', event => {showSynopsis("synopsisACT")});
+avengersPoster.addEventListener('click', event => { showSynopsis("synopsisACT") });
 
 var topEndWeddingPoster = document.getElementById("topEndWeddingPoster");
-topEndWeddingPoster.addEventListener('click', event => {showSynopsis("synopsisRMC")});
-
-
+topEndWeddingPoster.addEventListener('click', event => { showSynopsis("synopsisRMC") });
 
 var dumboPoster = document.getElementById("dumboPoster");
-dumboPoster.addEventListener('click', event => {showSynopsis("synopsisANM")});
-
-
+dumboPoster.addEventListener('click', event => { showSynopsis("synopsisANM") });
 
 var theHappyPrincePoster = document.getElementById("theHappyPrincePoster");
-theHappyPrincePoster.addEventListener('click', event => {showSynopsis("synopsisAHF")});
+theHappyPrincePoster.addEventListener('click', event => { showSynopsis("synopsisAHF") });
+
+var movieSynopsisAreas = ["synopsisACT", "synopsisRMC", "synopsisANM", "synopsisAHF"];
+
+var tempSynopsisID = " ";
+var tempMovieName = " "
+
+var timeButton = document.getElementsByClassName("movieTimeButton");
+
+var arrayOfDayButtons = ["mondayButton", "tuesdayButton", "wednesdayButton", 
+    "thursdayButton", "fridayButton", "saturdayButton", "sundayButton"];
+
+
+for(var i=0; i<arrayOfDayButtons.length; i++){
+    
+}
+
+
+
 
 // topEndWeddinPoster.addEventListener('click',showSynopsis('synopsisRMC'));

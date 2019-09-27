@@ -263,13 +263,16 @@ p.textMuted {
     padding: 0 10px;
 }
 
-/* Style the counter movieCards */
-.movieCard {
+/* Style the counter smallCards */
+.smallCard, .bigCard {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 16px;
   background-color: #f1f1f1;
   min-height: 330px;
   border: 2px solid rgb(58, 35, 35);
+  width: 95%;
+  align-content: center;
+  margin: auto;
 }
 .poster {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -278,14 +281,14 @@ p.textMuted {
   background-color: #f1f1f1;
 }
 
-.movieCard .column h3 {
+.smallCard .column h3 {
     font-family: 'Montserrat';
     font-size: 20px;
     font-weight: 800;
     margin-bottom: 20px;
 }
 
-.movieCard .column p {
+.smallCard .column p {
     font-family: 'Montserrat';
     font-size: 16px;
     margin-bottom: 10px;
@@ -302,14 +305,14 @@ p.textMuted {
     margin: 4px 2px;
 }
 
-.movieCard .plotDescription{
+.smallCard .plotDescription{
     font-family: 'Montserrat';
     font-size: 16px;
     text-align: left;
 }
 
 
-.movieCard .row .column h3{
+.smallCard .row .column h3{
     font-family: 'Montserrat';
     font-size: 20px;
     text-align: left;
@@ -331,3 +334,42 @@ p.textMuted {
     display: none;
 }
 
+.bigCard {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    background-color: #f1f1f1;
+    min-height: 330px;
+    border: 2px solid rgb(58, 35, 35);
+    width: 95%;
+    align-content: center;
+    margin: auto;
+  }
+
+#orderButton{
+    background-color: #1d699a;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 4px 2px;
+    margin-right: 25px;
+    float: right;
+} 
+
+.formCard{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    background-color: #f1f1f1;
+    min-height: 150px;
+    border: 1px solid rgb(58, 35, 35);
+    width: 95%;
+    align-content: center;
+    margin: auto;
+}
+
+/* .formCard div{
+    float: right;
+    align-self: right;
+} */

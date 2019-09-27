@@ -121,7 +121,7 @@
 
             <div class="column">
 
-                <div class="movieCard">
+                <div class="smallCard">
 
                     <div class="row">
 
@@ -132,11 +132,11 @@
                         <div class="column">
 
                             <h3>Avengers: Endgame <span class="movieRating">PG-13</span></h3>
-                            <p>Wed: 9pm</p>
-                            <p>Thu: 9pm</p>
-                            <p>Fri: 9pm</p>
-                            <p>Sat: 6pm</p>
-                            <p>Sun: 6pm</p>
+                            <p>Wednesday: 9pm</p>
+                            <p>Thursday: 9pm</p>
+                            <p>Friday: 9pm</p>
+                            <p>Saturday: 6pm</p>
+                            <p>Sunday: 6pm</p>
                         </div>
 
                     </div>
@@ -146,7 +146,7 @@
 
             <div class="column">
 
-                <div class="movieCard">
+                <div class="smallCard">
 
                     <div class="row">
 
@@ -157,10 +157,10 @@
                         <div class="column">
 
                             <h3>Top End Wedding <span class="movieRating">M</span></h3>
-                            <p>Mon: 6pm</p>
-                            <p>Tue: 6pm</p>
-                            <p>Sat: 3pm</p>
-                            <p>Sun: 3pm</p>
+                            <p>Monday: 6pm</p>
+                            <p>Tuesday: 6pm</p>
+                            <p>Saturday: 3pm</p>
+                            <p>Sunday: 3pm</p>
                         </div>
 
                     </div>
@@ -176,7 +176,7 @@
 
             <div class="column">
 
-                <div class="movieCard">
+                <div class="smallCard">
                     <div class="row">
 
                         <div class="column" id="dumboPoster">
@@ -187,13 +187,13 @@
                         <div class="column">
 
                             <h3>Dumbo <span class="movieRating">PG</span></h3>
-                            <p>Mon: 12pm</p>
-                            <p>Tue: 12pm</p>
-                            <p>Wed: 6pm</p>
-                            <p>Thu: 6pm</p>
-                            <p>Fri: 6pm</p>
-                            <p>Sat: 12pm</p>
-                            <p>Sun: 12pm</p>
+                            <p>Monday: 12pm</p>
+                            <p>Tuesday: 12pm</p>
+                            <p>Wednesday: 6pm</p>
+                            <p>Thursday: 6pm</p>
+                            <p>Friday: 6pm</p>
+                            <p>Saturday: 12pm</p>
+                            <p>Sunday: 12pm</p>
                         </div>
                     </div>
                 </div>
@@ -202,7 +202,7 @@
 
             <div class="column">
 
-                <div class="movieCard">
+                <div class="smallCard">
                     <div class="row">
 
                         <div class="column" id="theHappyPrincePoster">
@@ -213,11 +213,11 @@
                         <div class="column">
 
                             <h3>The Happy Prince <span class="movieRating">R</span></h3>
-                            <p>Wed: 12pm</p>
-                            <p>Thu: 12pm</p>
-                            <p>Fri: 12pm</p>
-                            <p>Sat: 9pm</p>
-                            <p>Sun: 9pm</p>
+                            <p>Wednesday: 12pm</p>
+                            <p>Thursday: 12pm</p>
+                            <p>Friday: 12pm</p>
+                            <p>Saturday: 9pm</p>
+                            <p>Sunday: 9pm</p>
 
                         </div>
 
@@ -236,12 +236,13 @@
 
             <div class="synopsisArea">
 
-                <div class="movieCard">
+                <div class="bigCard">
 
                     <div class="row">
 
                         <div class="column">
-                            <h2><span>Avengers: Endgame</span> <span class="movieRating">PG-13</span></h3>
+                            <h2><span class="movieName">Avengers: Endgame</span> <span class="movieRating">PG-13</span>
+                                </h3>
                                 <br>
                                 <br>
                                 <br>
@@ -270,11 +271,11 @@
                         </div>
 
                         <div class="column">
-                            <button class="movieTimeButton">Wed: 9pm</button>
-                            <button class="movieTimeButton">Thu: 9pm</button>
-                            <button class="movieTimeButton">Fri: 9pm</button>
-                            <button class="movieTimeButton">Sat: 6pm</button>
-                            <button class="movieTimeButton">Sun: 6pm</button>
+                            <button class="movieTimeButton">Wednesday: 9pm</button>
+                            <button class="movieTimeButton">Thursday: 9pm</button>
+                            <button class="movieTimeButton">Friday: 9pm</button>
+                            <button class="movieTimeButton">Saturday: 6pm</button>
+                            <button class="movieTimeButton">Sunday: 6pm</button>
                         </div>
                     </div>
                 </div>
@@ -290,12 +291,12 @@
 
             <div class="synopsisArea">
 
-                <div class="movieCard">
+                <div class="bigCard">
 
                     <div class="row">
 
                         <div class="column">
-                            <h2><span>Top End Wedding</span> <span class="movieRating">M</span></h3>
+                            <h2><span class="movieName">Top End Wedding</span> <span class="movieRating">M</span></h3>
                                 <br>
                                 <br>
                                 <br>
@@ -320,10 +321,10 @@
                         </div>
 
                         <div class="column">
-                            <button class="movieTimeButton">Mon: 6pm</button>
-                            <button class="movieTimeButton">Tue: 6pm</button>
-                            <button class="movieTimeButton">Sat: 3pm</button>
-                            <button class="movieTimeButton">Sun: 3pm</button>
+                            <button class="movieTimeButton">Monday: 6pm</button>
+                            <button class="movieTimeButton">Tuesday: 6pm</button>
+                            <button class="movieTimeButton">Saturday: 3pm</button>
+                            <button class="movieTimeButton">Sunday: 3pm</button>
                         </div>
                     </div>
                 </div>
@@ -340,12 +341,12 @@
 
             <div class="synopsisArea">
 
-                <div class="movieCard">
+                <div class="bigCard">
 
                     <div class="row">
 
                         <div class="column">
-                            <h2><span>Dumbo</span> <span class="movieRating">PG</span></h3>
+                            <h2><span class="movieName">Dumbo</span> <span class="movieRating">PG</span></h3>
                                 <br>
                                 <br>
                                 <br>
@@ -370,13 +371,13 @@
                         </div>
 
                         <div class="column">
-                            <button class="movieTimeButton">Mon: 12pm</button>
-                            <button class="movieTimeButton">Tue: 12pm</button>
-                            <button class="movieTimeButton">Wed: 6pm</button>
-                            <button class="movieTimeButton">Thu: 6pm</button>
-                            <button class="movieTimeButton">Fri: 6pm</button>
-                            <button class="movieTimeButton">Sat: 12pm</button>
-                            <button class="movieTimeButton">Sun: 12pm</button>
+                            <button class="movieTimeButton">Monday: 12pm</button>
+                            <button class="movieTimeButton">Tuesday: 12pm</button>
+                            <button class="movieTimeButton">Wednesday: 6pm</button>
+                            <button class="movieTimeButton">Thursday: 6pm</button>
+                            <button class="movieTimeButton">Friday: 6pm</button>
+                            <button class="movieTimeButton">Saturday: 12pm</button>
+                            <button class="movieTimeButton">Sunday: 12pm</button>
                         </div>
                     </div>
                 </div>
@@ -393,12 +394,12 @@
 
             <div class="synopsisArea">
 
-                <div class="movieCard">
+                <div class="bigCard">
 
                     <div class="row">
 
                         <div class="column">
-                            <h2><span>The Happy Prince</span> <span class="movieRating">R</span></h3>
+                            <h2><span class="movieName">The Happy Prince</span> <span class="movieRating">R</span></h3>
                                 <br>
                                 <br>
                                 <br>
@@ -423,11 +424,11 @@
                         </div>
 
                         <div class="column">
-                            <button class="movieTimeButton">Wed: 12pm</button>
-                            <button class="movieTimeButton">Thu: 12pm</button>
-                            <button class="movieTimeButton">Fri: 12pm</button>
-                            <button class="movieTimeButton">Sat: 9pm</button>
-                            <button class="movieTimeButton">Sun: 9pm</button>
+                            <button class="movieTimeButton">Wednesday: 12pm</button>
+                            <button class="movieTimeButton">Thursday: 12pm</button>
+                            <button class="movieTimeButton">Friday: 12pm</button>
+                            <button class="movieTimeButton">Saturday: 9pm</button>
+                            <button class="movieTimeButton">Sunday: 9pm</button>
                         </div>
                     </div>
                 </div>
@@ -437,6 +438,180 @@
         </div>
 
         <!-- new movie end (4)-->
+        <form action="https://titan.csit.rmit.edu.au/~e54061/wp/lunardo-formtest.php">
+            <div class="row">
+                <div class="bigCard">
+                    <div class="row">
+                        <div class="column">
+                            <div class="row">
+                                <p> <span id="movieTitle">Movie Title</span> - <span>Day</span> - <span>Time</span></p>
+                            </div>
+
+                            <div class="row">
+                                <div class="formCard">
+                                    <h3>Standard Seats</h3>
+
+                                    <label for="seats[STA]">Adults
+
+                                        <select name="seats[STA]">
+                                            <option></option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+
+                                    </label>
+                                    <br>
+                                    <label for="seats[STP]">Concession
+
+                                        <select name="seats[STP]">
+                                            <option></option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+
+                                    </label>
+                                    <br>
+                                    <label for="seats[STC]">Child
+
+                                        <select name="seats[STC]">
+                                            <option></option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+
+                                    </label>
+                                </div>
+
+                                <br>
+                                <br>
+                                <br>
+
+                                <div class="formCard">
+                                    <h3>Standard Seats</h3>
+
+                                    <label for="seats[FCA]">Adults
+
+                                        <select name="seats[FCA]">
+                                            <option></option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+
+                                    </label>
+                                    <br>
+                                    <label for="seats[FCP]">Concession
+
+                                        <select name="seats[FCP]">
+                                            <option></option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+
+                                    </label>
+                                    <br>
+                                    <label for="seats[FCC]">Child
+
+                                        <select name="seats[FCC]">
+                                            <option></option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+
+                                    </label>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="column">
+                            <label for="cust[name]">Name:</label>
+                            <input type="text" id="cust[name]" name="name" placeholder="Your name" required>
+                            <br>
+                            <label for="cust[email]">
+                                Email:
+                                <input type="cust[email]" id="email" name="email" placeholder="Your email" required>
+                            </label>
+                            <br>
+                            <label for="cust[mobile]">Mobile:</label>
+                            <input type="text" id="cust[mobile]" name="mobile" placeholder="Your mobile number">
+                            <br>
+                            <label for="cust[card]">Credit Card:</label>
+                            <input type="text" id="cust[card]" name="credit-card" placeholder="Your Credit Card number">
+                            <br>
+                            <label for="cust[expiry]">Expiry</label>
+                            <input type="month" name="cust[expiry]">
+                        </div>
+
+                        <div class="column">
+
+
+
+                        </div>
+                    </div>
+
+
+                    <!-- TODO: make sure this is at the bottom -->
+                    <div class="row">
+                        <div>
+                            <label for="cust[payment]">Total $</label>
+                            <input id="TotalC" name="cust[payment]" readonly>
+                        </div>
+
+                        <button type="submit" name="order" id="orderButton">Order</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
 
 
     </section>
