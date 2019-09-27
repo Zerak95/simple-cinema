@@ -9,39 +9,26 @@ window.onscroll = function () {
         }
     }
 
-    // var sections = this.document.querySelectorAll("section");
-
-    // console.log(window.scrollY);
     clearActiveNav()
-
-
 
     // makes sure that areas abouve or bellow the sections do not highlight the navbar
     while (n < sections.length - 1 && sections[n + 1].offsetTop <= window.scrollY &&
         (sections[sections.length - 1].offsetTop + sections[sections.length - 1].scrollHeight) > window.scrollY) {
 
-
-
-        // console.log("n  before incroment is: " + n);
         n++;
-        // console.log("n is: " + n);
 
         if (n >= 0) {
             clearActiveNav()
             navLinks[n].classList.add("active");
-            //  console.log(sections[n+1].id + "(offsetTop): " + sections[n+1].offsetTop);
-            //  console.log("window.scrollY is: " + window.scrollY);
         }
-
-        // if(n >= sections.length-1){
-        //     n=-1;
-        // }
-
     }
 }
 
 function showSynopsis(id) {
     hideAllSynopsis();
+    hideBookingForm();
+    setExpiryDate();
+
     var x = document.getElementById(id);
     x.style.display = "block";
 
@@ -51,12 +38,28 @@ function showSynopsis(id) {
     document.getElementById("movieTitle").innerHTML = tempMovieName;
 }
 
+function setMovieID(movieID) {
+    var movieCode = movieID.substr(movieID.length - 3);
+    document.getElementById("movie-id").value = movieCode;
+}
+
+
 function hideSynopsis(id) {
     var x = document.getElementById(id);
     x.style.display = "none";
-    // console.log("hiding: " + id);
 }
 
+function hideBookingForm() {
+    var x = document.getElementById("booking-form");
+    x.style.display = "none";
+}
+
+function showBookingForm() {
+    var x = document.getElementById("booking-form");
+    x.style.display = "block";
+}
+
+//hide all the Synopsis panels
 function hideAllSynopsis() {
     movieSynopsisAreas.forEach(element => {
         hideSynopsis(element);
@@ -68,17 +71,21 @@ function hideAllSynopsis() {
     // hideSynopsis("synopsisAHF");
 }
 
+//shows Synopsis Area when one of the movie posters is clicked.
 var avengersPoster = document.getElementById("avengersPoster");
-avengersPoster.addEventListener('click', event => { showSynopsis("synopsisACT") });
+avengersPoster.addEventListener('click', event => { showSynopsis("synopsisACT"); setMovieID("synopsisACT"); });
 
 var topEndWeddingPoster = document.getElementById("topEndWeddingPoster");
-topEndWeddingPoster.addEventListener('click', event => { showSynopsis("synopsisRMC") });
+topEndWeddingPoster.addEventListener('click', event => { showSynopsis("synopsisRMC"); setMovieID("synopsisRMC");});
 
 var dumboPoster = document.getElementById("dumboPoster");
-dumboPoster.addEventListener('click', event => { showSynopsis("synopsisANM") });
+dumboPoster.addEventListener('click', event => { showSynopsis("synopsisANM"); setMovieID("synopsisANM"); });
 
 var theHappyPrincePoster = document.getElementById("theHappyPrincePoster");
-theHappyPrincePoster.addEventListener('click', event => { showSynopsis("synopsisAHF") });
+theHappyPrincePoster.addEventListener('click', event => { showSynopsis("synopsisAHF"); setMovieID("synopsisAHF"); });
+
+
+
 
 //TODO: get the last 3 char and pass them into id="movie-id"
 var movieSynopsisAreas = ["synopsisACT", "synopsisRMC", "synopsisANM", "synopsisAHF"];
@@ -97,24 +104,6 @@ var arrayOfDay = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Satur
 var arrayOfDayShort = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 
 
-// for(var i=0; i<timeButtons.length; i++){
-//     timeButtons[i].addEventListener('click', event => {timeButtonsInfo(i)});    
-// }
-
-// timeButtons.forEach(element => {
-//     addEventListener('click', event => {timeButtonsInfo(element)});
-// });
-
-
-// timeButtons.addEventListener('click', function(event) {
-//     // find the closest parent of the event target that
-//     // matches the selector
-//     var closest = event.target.closest(selector);
-//     if (closest && base.contains(closest)) {
-//       // handle class event
-//     }
-//   });
-
 
 //addEventListener to evey item in the array
 for (var i = 0; i < timeButtons.length; i++) {
@@ -127,15 +116,19 @@ for (var i = 0; i < timeButtons.length; i++) {
 // set tempMovieDayTime to the button.innerHTML when pressed
 function timeButtonsInfo(button) {
     tempMovieDayTime = button.innerHTML;
-    console.log(button.innerHTML);
+
     setDayOfMovie();
     setTimeOfMovie(tempMovieDayTime);
     discountApply();
+    showBookingForm()
+
+    //this is done to make sure that the customer cant change the day and during
+    //      seat selection without having to reset everything 
+    hideAllSynopsis();
 }
 
 //if the day is part of tempMovieDayTime return true
 function movieDay(day) {
-    console.log("day is: " + day);
     var n = tempMovieDayTime.includes(day);
     return n;
 }
@@ -143,10 +136,6 @@ function movieDay(day) {
 //set the movie day fo synopsis area and id="movie-day""
 function setDayOfMovie() {
     for (var i = 0; i < arrayOfDay.length; i++) {
-        console.log('loop started');
-        console.log("arrayOfDay[i]: " + arrayOfDay[i]);
-        console.log("movieDay(arrayOfDay[i]): " + movieDay(arrayOfDay[i]));
-
 
         if (movieDay(arrayOfDay[i])) {
             synopsisAreaMovieDay = arrayOfDay[i];
@@ -175,28 +164,19 @@ function setTimeOfMovie(str) {
     document.getElementById("movie-hour").value = movieHour;
 }
 
-//TODO: make this a boolean
-//TODO: make a function that discounts the cost in its a weekday or other requirrements 
+// returns true if the customer can get a discount on their selection
 function discountApply() {
-    //TODO: make sure this is the right expretion 
-    console.log("******calling discountApply()");
-
     if (synopsisAreaMovieDay == arrayOfDay[0] || synopsisAreaMovieDay == arrayOfDay[2]) {
         isDiscount = true;
-        console.log("*******first true");
 
     } else if (synopsisAreaMovieDay == arrayOfDay[1] || synopsisAreaMovieDay == arrayOfDay[3] || synopsisAreaMovieDay == arrayOfDay[4]) {
         if (retnum(tempMovieDayTime) == 12) {
             isDiscount = true;
-            console.log("*******second true");
         } else {
-            console.log("*******first false");
             isDiscount = false;
         }
     } else {
         isDiscount = false;
-        console.log("*******second false");
-
     }
 
 
@@ -210,7 +190,6 @@ var FCPtotal = 0;
 var FCCtotal = 0;
 var finalPrice = 0;
 
-// TODO: make an object class with seat codes and each seat code has discoun price and full price in an array.
 var seatCode = {
     STAdiscount: 14.00,
     STAnormal: 19.80,
@@ -232,11 +211,7 @@ var seatCode = {
 };
 
 
-// document.getElementById("seats-STA").addEventListener('onblur', function () {
-//     updateCost();
-// });
-
-
+//listen to when a change hapens in the number of seats elected
 document.getElementById("seats-STA").addEventListener('change', event => { updateCost() });
 document.getElementById("seats-STP").addEventListener('change', event => { updateCost() });
 document.getElementById("seats-STC").addEventListener('change', event => { updateCost() });
@@ -247,8 +222,6 @@ document.getElementById("seats-FCC").addEventListener('change', event => { updat
 
 
 function updateCost() {
-    console.log("update all calculations");
-
     priceForSTA();
     priceForSTP();
     priceForSTC();
@@ -256,7 +229,6 @@ function updateCost() {
     priceForFCP();
     priceForFCC();
     finalCost();
-
 }
 
 function finalCost() {
@@ -272,7 +244,6 @@ function priceForSTA() {
     var numberOfSeats = retnum(document.getElementById("seats-STA").value);
 
     if (isNaN(numberOfSeats)) {
-        console.log("the value is NaN");
         STAtotal = 0;
     } else {
         if (isDiscount) {
@@ -282,34 +253,30 @@ function priceForSTA() {
         }
     }
 
-    console.log("STAtotal is: " + STAtotal);
 }
 
 function priceForSTP() {
     var numberOfSeats = retnum(document.getElementById("seats-STP").value);
 
-    if (isNaN(numberOfSeats)){
-        console.log("the value is NaN");
+    if (isNaN(numberOfSeats)) {
         STPtotal = 0;
-    }else{
+    } else {
         if (isDiscount) {
             STPtotal = parseInt(numberOfSeats) * seatCode.STPdiscount;
         } else {
             STPtotal = parseInt(numberOfSeats) * seatCode.STPnormal;
         }
     }
-    
 
-    console.log("STPtotal is: " + STPtotal);
+
 }
 
 function priceForSTC() {
     var numberOfSeats = retnum(document.getElementById("seats-STC").value);
 
-    if (isNaN(numberOfSeats)){
-        console.log("the value is NaN");
+    if (isNaN(numberOfSeats)) {
         STCtotal = 0;
-    }else{
+    } else {
         if (isDiscount) {
             STCtotal = parseInt(numberOfSeats) * seatCode.STCdiscount;
         } else {
@@ -317,34 +284,30 @@ function priceForSTC() {
         }
     }
 
-    console.log("STCtotal is: " + STCtotal);
 }
 
 function priceForFCA() {
     var numberOfSeats = retnum(document.getElementById("seats-FCA").value);
 
-    if (isNaN(numberOfSeats)){
-        console.log("the value is NaN");
+    if (isNaN(numberOfSeats)) {
         FCAtotal = 0;
-    }else{
+    } else {
         if (isDiscount) {
             FCAtotal = parseInt(numberOfSeats) * seatCode.FCAdiscount;
         } else {
             FCAtotal = parseInt(numberOfSeats) * seatCode.FCAnormal;
         }
     }
-    
 
-    console.log("FCAtotal is: " + FCAtotal);
+
 }
 
 function priceForFCP() {
     var numberOfSeats = retnum(document.getElementById("seats-FCP").value);
 
-    if (isNaN(numberOfSeats)){
-        console.log("the value is NaN");
+    if (isNaN(numberOfSeats)) {
         FCPtotal = 0;
-    }else{
+    } else {
         if (isDiscount) {
             FCPtotal = parseInt(numberOfSeats) * seatCode.FCPdiscount;
         } else {
@@ -353,36 +316,104 @@ function priceForFCP() {
     }
 
 
-    console.log("FCPtotal is: " + FCPtotal);
 }
 
 function priceForFCC() {
     var numberOfSeats = retnum(document.getElementById("seats-FCC").value);
 
-    if (isNaN(numberOfSeats)){
-        console.log("the value is NaN");
+    if (isNaN(numberOfSeats)) {
         FCCtotal = 0;
-    }else{
+    } else {
         if (isDiscount) {
             FCCtotal = parseInt(numberOfSeats) * seatCode.FCCdiscount;
         } else {
             FCCtotal = parseInt(numberOfSeats) * seatCode.FCCnormal;
         }
     }
-    
-    
-
-    console.log("FCCtotal is: " + FCCtotal);
 }
 
 
-// TODO: addEventListener to each input check if isDiscount == true give discounted price else norml price
+document.getElementById("cust-mobile").addEventListener('blur', event => { isAustralianNumber() });
+document.getElementById("cust-name").addEventListener('blur', event => { isWesternName() });
+
+function isAustralianNumber() {
+    var mobileNumber = document.getElementById("cust-mobile");
+    var expression = /^(\(04\)|04|\+614)( ?\d){8}$/;
 
 
+    if (expression.test(mobileNumber.value)){
+        return true;
+    }else{
+        document.getElementById('mobileError').innerHTML = "<br>Sorry, you must use a western name";
+        return false;
+    }
+}
+
+function isWesternName() {
+    var custName = document.getElementById("cust-name");
+    var expression = /^[a-zA-Z \-.']{1,100}$/;
 
 
+    if (expression.test(custName.value)) {
+        return true;
+    } else {
+        document.getElementById('nameError').innerHTML = "<br>Sorry, you must use a western name";
+        return false;
+    }
+}
 
-// TODO: hide Booking Form and let it only show when showing time is pressed
+function isValidCreditCard() {
+    var custCard = document.getElementById("credit-card");
+    var expression = /^(?:4\d{3}|5[1-5]\d{2}|6011|3[47]\d{2})([-\s]?)\d{4}\1\d{4}\1\d{3,4}$/;
+  
+    if (expression.test(custCard.value)) {
+        return true;
+    } else {
+        document.getElementById('creditCardError').innerHTML = "<br>Sorry, you must use a valid Credit Card";
+        return false;
+    }
+}
+
+function setExpiryDate() {
+    var date = new Date;
+    var currentMonth = date.getMonth();
+    var currentYear = date.getFullYear();
+
+    var nextMonth = parseInt(currentMonth) + 2;
+    var nextYear = currentYear;
+
+    if (currentMonth >= 12) {
+        nextMonth = 1;
+        nextYear = parseInt(currentYear) + 1;
+    }
+
+    if (nextMonth < 10) {
+        nextMonth = "0" + nextMonth;
+    }
+
+    var minDate = "" + nextYear + "-" + nextMonth;
+
+    document.getElementById('cust-expiry').setAttribute("min", minDate);
+    
+}
 
 
-// topEndWeddinPoster.addEventListener('click',showSynopsis('synopsisRMC'));
+function formValidate() {
+    clearErrors();
+    var countErrors = 0;
+
+    if (!isWesternName()) countErrors++;
+    if (!isAustralianNumber()) countErrors++;
+    if (!isValidCreditCard()) countErrors++;
+
+    // Block or allow submission depending on number of errors
+    // console.log(countErrors);
+    return (countErrors == 0);
+}
+
+function clearErrors() {
+    var allErrors = document.getElementsByClassName('error');
+    for (var i = 0; i < allErrors.length; i++) {
+        allErrors[i].innerHTML = "";
+    }
+}

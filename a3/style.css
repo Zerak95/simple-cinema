@@ -334,6 +334,10 @@ p.textMuted {
     display: none;
 }
 
+#booking-form{
+    display: none;
+}
+
 .bigCard {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
@@ -367,6 +371,10 @@ p.textMuted {
     width: 95%;
     align-content: center;
     margin: auto;
+}
+
+.error{
+    color:#900
 }
 
 /* .formCard div{

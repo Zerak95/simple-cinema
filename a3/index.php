@@ -437,13 +437,15 @@
         </div>
 
         <!-- new movie end (4)-->
-        <form action="https://titan.csit.rmit.edu.au/~e54061/wp/lunardo-formtest.php">
-            <div class="row">
+        <form method="post" target="_blank" action="https://titan.csit.rmit.edu.au/~e54061/wp/lunardo-formtest.php"
+            onsubmit="return formValidate();">
+            <div class="row" id="booking-form">
                 <div class="bigCard">
                     <div class="row">
                         <div class="column">
                             <div class="row">
-                                <p> <span id="movieTitle">Movie Title</span> - <span id="movieDay">Day</span> - <span id="movieTime">Time</span>pm</p>
+                                <p> <span id="movieTitle">Movie Title</span> - <span id="movieDay">Day</span> - <span
+                                        id="movieTime">Time</span>pm</p>
                             </div>
                             <input type="hidden" name="movie[id]" id="movie-id" value="">
                             <input type="hidden" name="movie[day]" id="movie-day" value="">
@@ -575,23 +577,40 @@
                         </div>
 
                         <div class="column">
-                            <label for="cust[name]">Name:</label>
-                            <input type="text" id="cust-name" name="cust[name]" placeholder="Your name" required>
+
+                            <p>
+                                <label for="cust[name]">Name:</label>
+                                <input type="text" id="cust-name" name="cust[name]" placeholder="Your name" required>
+                                <span class="error" id="nameError"><br></span>
+                            </p>
                             <br>
-                            <label for="cust[email]">
-                                Email:
-                                <input type="cust[email]" id="cust-email" name="cust[email]" placeholder="Your email" required>
-                            </label>
+                            <p>
+                                <label for="cust[email]">
+                                    Email:
+                                    <input type="cust[email]" id="cust-email" name="cust[email]"
+                                        placeholder="Your email" required>
+                                </label>
+                                <span class="error" id="emailError"><br></span>
+                            </p>
                             <br>
-                            <label for="cust[mobile]">Mobile:</label>
-                            <input type="tel" id="cust-mobile" name="cust[mobile]" pattern="[0-9]{3} [0-9]{3} [0-9]{4}"
-                            required placeholder="Your mobile number">
+                            <p>
+                                <label for="cust[mobile]">Mobile:</label>
+                                <input type="tel" id="cust-mobile" name="cust[mobile]" required
+                                    placeholder="Your mobile number">
+                                <span class="error" id="mobileError"><br></span>
+                            </p>
                             <br>
-                            <label for="cust[card]">Credit Card:</label>
-                            <input type="text" id="credit-card" name="cust[card]" placeholder="Your Credit Card number">
+                            <p>
+                                <label for="cust[card]">Credit Card:</label>
+                                <input type="text" id="credit-card" name="cust[card]"
+                                    placeholder="Your Credit Card number">
+                                <span class="error" id="creditCardError"><br></span>
+                            </p>
                             <br>
-                            <label for="cust[expiry]">Expiry</label>
-                            <input type="month" name="cust[expiry]" id="cust-expiry">
+                            <p>
+                                <label for="cust[expiry]">Expiry</label>
+                                <input type="month" name="cust[expiry]" id="cust-expiry" required>
+                            </p>
                         </div>
 
                         <div class="column">
