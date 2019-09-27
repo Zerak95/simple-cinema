@@ -369,7 +369,6 @@
                         <div class="column">
                             <h4>Make a Booking: </h4>
                         </div>
-
                         <div class="column">
                             <button class="movieTimeButton">Monday: 12pm</button>
                             <button class="movieTimeButton">Tuesday: 12pm</button>
@@ -444,8 +443,11 @@
                     <div class="row">
                         <div class="column">
                             <div class="row">
-                                <p> <span id="movieTitle">Movie Title</span> - <span>Day</span> - <span>Time</span></p>
+                                <p> <span id="movieTitle">Movie Title</span> - <span id="movieDay">Day</span> - <span id="movieTime">Time</span>pm</p>
                             </div>
+                            <input type="hidden" name="movie[id]" id="movie-id" value="">
+                            <input type="hidden" name="movie[day]" id="movie-day" value="">
+                            <input type="hidden" name="movie[hour]" id="movie-hour" value="">
 
                             <div class="row">
                                 <div class="formCard">
@@ -453,8 +455,8 @@
 
                                     <label for="seats[STA]">Adults
 
-                                        <select name="seats[STA]">
-                                            <option></option>
+                                        <select name="seats[STA]" id="seats-STA">
+                                            <option value=''>please select</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -471,8 +473,8 @@
                                     <br>
                                     <label for="seats[STP]">Concession
 
-                                        <select name="seats[STP]">
-                                            <option></option>
+                                        <select name="seats[STP]" id="seats-STP">
+                                            <option value=''>please select</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -489,8 +491,8 @@
                                     <br>
                                     <label for="seats[STC]">Child
 
-                                        <select name="seats[STC]">
-                                            <option></option>
+                                        <select name="seats[STC]" id="seats-STC">
+                                            <option value=''>please select</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -511,12 +513,12 @@
                                 <br>
 
                                 <div class="formCard">
-                                    <h3>Standard Seats</h3>
+                                    <h3>First Class Seats</h3>
 
                                     <label for="seats[FCA]">Adults
 
-                                        <select name="seats[FCA]">
-                                            <option></option>
+                                        <select name="seats[FCA]" id="seats-FCA">
+                                            <option value=''>please select</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -533,8 +535,8 @@
                                     <br>
                                     <label for="seats[FCP]">Concession
 
-                                        <select name="seats[FCP]">
-                                            <option></option>
+                                        <select name="seats[FCP]" id="seats-FCP">
+                                            <option value=''>please select</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -551,8 +553,8 @@
                                     <br>
                                     <label for="seats[FCC]">Child
 
-                                        <select name="seats[FCC]">
-                                            <option></option>
+                                        <select name="seats[FCC]" id="seats-FCC">
+                                            <option value=''>please select</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -574,21 +576,22 @@
 
                         <div class="column">
                             <label for="cust[name]">Name:</label>
-                            <input type="text" id="cust[name]" name="name" placeholder="Your name" required>
+                            <input type="text" id="cust-name" name="cust[name]" placeholder="Your name" required>
                             <br>
                             <label for="cust[email]">
                                 Email:
-                                <input type="cust[email]" id="email" name="email" placeholder="Your email" required>
+                                <input type="cust[email]" id="cust-email" name="cust[email]" placeholder="Your email" required>
                             </label>
                             <br>
                             <label for="cust[mobile]">Mobile:</label>
-                            <input type="text" id="cust[mobile]" name="mobile" placeholder="Your mobile number">
+                            <input type="tel" id="cust-mobile" name="cust[mobile]" pattern="[0-9]{3} [0-9]{3} [0-9]{4}"
+                            required placeholder="Your mobile number">
                             <br>
                             <label for="cust[card]">Credit Card:</label>
-                            <input type="text" id="cust[card]" name="credit-card" placeholder="Your Credit Card number">
+                            <input type="text" id="credit-card" name="cust[card]" placeholder="Your Credit Card number">
                             <br>
                             <label for="cust[expiry]">Expiry</label>
-                            <input type="month" name="cust[expiry]">
+                            <input type="month" name="cust[expiry]" id="cust-expiry">
                         </div>
 
                         <div class="column">
@@ -603,7 +606,7 @@
                     <div class="row">
                         <div>
                             <label for="cust[payment]">Total $</label>
-                            <input id="TotalC" name="cust[payment]" readonly>
+                            <input id="cust-payment" name="cust[payment]" readonly>
                         </div>
 
                         <button type="submit" name="order" id="orderButton">Order</button>
