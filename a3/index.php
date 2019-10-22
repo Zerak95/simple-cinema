@@ -455,7 +455,7 @@
                                 <div class="formCard">
                                     <h3>Standard Seats</h3>
 
-                                    <label for="seats[STA]">Adults
+                                    <label for="seats-STA">Adults
 
                                         <select name="seats[STA]" id="seats-STA">
                                             <option value=''>please select</option>
@@ -473,7 +473,7 @@
 
                                     </label>
                                     <br>
-                                    <label for="seats[STP]">Concession
+                                    <label for="seats-STP">Concession
 
                                         <select name="seats[STP]" id="seats-STP">
                                             <option value=''>please select</option>
@@ -491,7 +491,7 @@
 
                                     </label>
                                     <br>
-                                    <label for="seats[STC]">Child
+                                    <label for="seats-STC">Child
 
                                         <select name="seats[STC]" id="seats-STC">
                                             <option value=''>please select</option>
@@ -517,7 +517,7 @@
                                 <div class="formCard">
                                     <h3>First Class Seats</h3>
 
-                                    <label for="seats[FCA]">Adults
+                                    <label for="seats-FCA">Adults
 
                                         <select name="seats[FCA]" id="seats-FCA">
                                             <option value=''>please select</option>
@@ -535,7 +535,7 @@
 
                                     </label>
                                     <br>
-                                    <label for="seats[FCP]">Concession
+                                    <label for="seats-FCP">Concession
 
                                         <select name="seats[FCP]" id="seats-FCP">
                                             <option value=''>please select</option>
@@ -553,7 +553,7 @@
 
                                     </label>
                                     <br>
-                                    <label for="seats[FCC]">Child
+                                    <label for="seats-FCC">Child
 
                                         <select name="seats[FCC]" id="seats-FCC">
                                             <option value=''>please select</option>
