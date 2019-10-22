@@ -601,14 +601,14 @@
                             </p>
                             <br>
                             <p>
-                                <label for="cust[card]">Credit Card:</label>
+                                <label for="credit-card">Credit Card:</label>
                                 <input type="text" id="credit-card" name="cust[card]"
                                     placeholder="Your Credit Card number">
                                 <span class="error" id="creditCardError"><br></span>
                             </p>
                             <br>
                             <p>
-                                <label for="cust[expiry]">Expiry</label>
+                                <label for="cust-expiry">Expiry</label>
                                 <input type="month" name="cust[expiry]" id="cust-expiry" required>
                             </p>
                         </div>
