@@ -579,13 +579,13 @@
                         <div class="column">
 
                             <p>
-                                <label for="cust[name]">Name:</label>
+                                <label for="cust-name">Name:</label>
                                 <input type="text" id="cust-name" name="cust[name]" placeholder="Your name" required>
                                 <span class="error" id="nameError"><br></span>
                             </p>
                             <br>
                             <p>
-                                <label for="cust[email]">
+                                <label for="cust-email">
                                     Email:
                                     <input type="cust[email]" id="cust-email" name="cust[email]"
                                         placeholder="Your email" required>
@@ -594,7 +594,7 @@
                             </p>
                             <br>
                             <p>
-                                <label for="cust[mobile]">Mobile:</label>
+                                <label for="cust-mobile">Mobile:</label>
                                 <input type="tel" id="cust-mobile" name="cust[mobile]" required
                                     placeholder="Your mobile number">
                                 <span class="error" id="mobileError"><br></span>
