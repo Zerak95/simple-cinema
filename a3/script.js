@@ -379,7 +379,10 @@ function setExpiryDate() {
     var currentMonth = date.getMonth();
     var currentYear = date.getFullYear();
 
-    var nextMonth = parseInt(currentMonth) + 2;
+    //the month value is 1 less than curent month since 0 is counted for Jan
+    currentMonth++
+
+    var nextMonth = parseInt(currentMonth) + 1;
     var nextYear = currentYear;
 
     if (currentMonth >= 12) {
