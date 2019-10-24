@@ -3,19 +3,33 @@
 
 // echo this is test 2;
 
-echo "this is test 3\n";
+print_r($_POST);
 
-echo "SESSION\n";
+$seats = $_POST['seats']['FCC'];
+// $seatsSTA = $_POST['seats']['STA'];
 
-echo $_SESSION;
+// echo "this is test 3\n";
 
-echo "\n\nPOST\n";
 
-echo $_POST;
+echo "\n\nPOST\n\n";
 
-echo "\n\nPOST cust\n";
+echo "\n\nseats\n\n";
+echo $seats;
 
-echo $_POST["cust"];
+
+
+// echo "SESSION\n";
+
+
+// echo $_SESSION;
+
+// echo "\n\nPOST\n";
+
+// echo $_POST;
+
+// echo "\n\nPOST cust\n";
+
+// echo $_POST["cust"];
 
 
 
