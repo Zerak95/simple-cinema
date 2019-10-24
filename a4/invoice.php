@@ -3,11 +3,21 @@
 
 // echo this is test 2;
 
-echo "this is test 3";
+echo "this is test 3\n";
 
-echo "this is test 4"
+echo "SESSION\n";
 
-echo "this is test 5"
+echo $_SESSION;
+
+echo "\n\nPOST\n";
+
+echo $_POST;
+
+echo "\n\nPOST cust\n";
+
+echo $_POST["cust"];
+
+
 
 
 
