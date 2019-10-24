@@ -1,0 +1,383 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+
+
+header {
+    width: 100%;
+    height: 80px;
+    display: block;
+    background-color: #101010
+}
+
+#innerHeader {
+    max-width: 1000px;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+    background-color: red;
+}
+
+#logoContainer {
+    height: 100%;
+    display: table;
+    float: left;
+}
+
+
+#logoContainer h1 {
+    color: white;
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    font-family: 'Montserrat';
+    font-size: 26px;
+    padding-left: 20px;
+    font-weight: 200;
+}
+
+#logoContainer h1 span {
+    font-weight: 800;
+
+}
+
+#logoImage{
+    max-width: 100%;
+    max-height: 80px;
+}
+
+nav {
+    width: 100%;
+    height: 80px;
+    display: block;
+    background-color: rgba(31, 22, 22, 0.876);
+    position: sticky;
+    top: 0px;
+}
+
+#navigation {
+    height: 100%;
+}
+
+
+#navigation a {
+    height: 100%;
+    display: table;
+    float: left;
+    padding: 0 20px;
+}
+
+#navigation a:hover,
+#navigation .active {
+    background-color: #1d699a;
+    transition: 0.3;
+}
+
+#navigation a li{
+    display: table-cell;
+    vertical-align: middle;
+    height: 100%;
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 16px;
+}
+
+
+
+
+
+.infoDiv {
+    background-color:white;
+    font-size:26px;
+    font-family: 'Montserrat';
+    padding: 50px 50px;
+    min-height: 200px;
+}
+
+.mktImage {
+    display: block;
+    max-width: 100%;
+    /* max-height: 200px; */
+    margin: 40px auto 0;
+
+}
+
+.infoDiv p {
+    font-family: 'Montserrat';
+    font-size: 26px;
+    text-align: left;
+}
+
+.infoDiv p {
+    font-family: 'Montserrat';
+    font-size: 26px;
+    text-align: left;
+}
+
+
+#prices h1 {
+    font-family: 'Montserrat';
+    font-size: 34px;
+    font-weight: 800;
+
+}
+
+#prices .infoDiv {
+    min-height: auto;
+    padding: 10px 50px;
+
+    border: 1px solid #d4d4d4;
+}
+
+.parallaxScrolling {
+  background-image: url("../../media/total-cinema.jpg");
+
+  height: 500px; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+} 
+
+
+h2.priceMain {
+    font-family: 'Montserrat';
+    font-size: 26px;
+    font-weight: 800;
+}
+
+p.priceSubtitle,
+p.priceNumber {
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-weight: 200;
+    width: 50%;
+    display: block;
+    float: left;
+    padding: 20px 0;
+}
+
+
+@media only screen and (min-width: 1113px) {  
+    p.priceNumber {
+        text-align: right;
+    }
+}
+
+@media only screen and (max-width: 1114px) {
+    h1 {
+        padding-bottom: 30px;
+        text-align: center;
+    }
+    h2.priceMain {
+         text-align: center;
+    }
+  p.priceSubtitle,
+    p.priceNumber {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+}
+
+p.textMuted {
+    font-family: 'Montserrat';
+    font-size: 14px;
+    font-weight: 200;
+    color: grey;
+}
+
+
+
+.footer {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin-top: 20px;
+   
+    background-color: #101010;
+
+}
+
+.inner-footer {
+    max-width: 1000px;
+    background-color: red;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+    padding: 50px;
+}
+
+.inner-footer p {
+    height: 100%;
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 50%;
+  padding: 0 10px;
+}
+
+
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 3px -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+.movieRating{
+    text-align: right;
+    float:right;
+}
+
+.plotDescription {
+    float: center;
+    width: 100%;
+    padding: 0 10px;
+}
+
+/* Style the counter smallCards */
+.smallCard, .bigCard {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  background-color: #f1f1f1;
+  min-height: 330px;
+  border: 2px solid rgb(58, 35, 35);
+  width: 95%;
+  align-content: center;
+  margin: auto;
+}
+.poster {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: left;
+  background-color: #f1f1f1;
+}
+
+.smallCard .column h3 {
+    font-family: 'Montserrat';
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.smallCard .column p {
+    font-family: 'Montserrat';
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.movieTimeButton {
+    background-color: #1d699a;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 4px 2px;
+}
+
+.smallCard .plotDescription{
+    font-family: 'Montserrat';
+    font-size: 16px;
+    text-align: left;
+}
+
+
+.smallCard .row .column h3{
+    font-family: 'Montserrat';
+    font-size: 20px;
+    text-align: left;
+}
+
+#synopsisRMC{
+    display: none;
+}
+
+#synopsisACT{
+    display: none;
+}
+
+#synopsisANM{
+    display: none;
+}
+
+#synopsisAHF{
+    display: none;
+}
+
+#booking-form{
+    display: none;
+}
+
+.bigCard {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    background-color: #f1f1f1;
+    min-height: 330px;
+    border: 2px solid rgb(58, 35, 35);
+    width: 95%;
+    align-content: center;
+    margin: auto;
+  }
+
+#orderButton{
+    background-color: #1d699a;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 4px 2px;
+    margin-right: 25px;
+    float: right;
+} 
+
+.formCard{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    background-color: #f1f1f1;
+    min-height: 150px;
+    border: 1px solid rgb(58, 35, 35);
+    width: 95%;
+    align-content: center;
+    margin: auto;
+}
+
+.error{
+    color:#900
+}
+
+/* .formCard div{
+    float: right;
+    align-self: right;
+} */
