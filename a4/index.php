@@ -1,5 +1,115 @@
 <?php 
-    include_once('tools.php'); 
+    include_once('tools.php');
+
+    $expiryDate=''; 
+    // $time=''; 
+    $phoneNumber=''; 
+    $name='';
+    $email='';
+    $creditCard='';
+    $payment='';
+    $move='';
+
+    // === day time movie  ====
+
+    $expiryDateError=''; 
+    // $timeError='';
+    $phoneNumberError=''; 
+    $nameError=''; 
+    $emailError='';
+    $creditCardError='';
+    $paymentError='';
+    $moveError='';
+
+    // if(isset($_POST['movie'])){
+    //     $movie = $_POST['movie'];
+        
+    //     echo $movie;
+    //     // $_SESSION['movie'] = $_POST['movie'];
+    //   }
+
+    if(!empty($_POST)){
+        // $movie = $_POST['movie'];
+        $name = $_POST['cust']['name'];
+        $email= $_POST['cust']['email'];
+        $phoneNumber= $_POST['cust']['mobile'];
+        $creditCard= $_POST['cust']['card'];
+        $expiryDate= $_POST['cust']['expiry'];
+        $payment= $_POST['cust']['payment'];
+        $movie= $_POST['movie']['id'];
+        
+        
+
+        if (empty($name)) { 
+            $nameError=' <span style="color:red">Cannot be blank</span>'; 
+            // $errorsFound = true; 
+        }else if (empty($email)) { 
+            $emailError=' <span style="color:red">Cannot be blank</span>'; 
+            // $errorsFound = true; 
+        }else if (empty($phoneNumber)) { 
+            $phoneNumberError=' <span style="color:red">Cannot be blank</span>'; 
+            // $errorsFound = true; 
+        }else if (empty($creditCard)) { 
+            $creditCardError=' <span style="color:red">Cannot be blank</span>'; 
+            // $errorsFound = true; 
+        }else if (empty($expiryDate)) {
+            $expiryDateError=' <span style="color:red">Cannot be blank</span>'; 
+            // $errorsFound = true; 
+        }else if (empty($payment)) {
+            $paymentError=' <span style="color:red">you must selcet at least 1 seat</span>'; 
+            // $errorsFound = true; 
+        }else if (empty($move)) {
+            $moveError=' <span style="color:red">you must selcet a move first</span>'; 
+            // $errorsFound = true; 
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        else{
+            preShow($_POST);
+            echo " <h1>well thats something</h1>";
+            $_SESSION['cart'] = $_POST;
+            preShow($_SESSION);
+
+            header("Location: invoice.php");
+        }
+            
+            
+
+
+
+
+            // else { 
+            // $height=$_POST['height']; 
+            // if (!is_numeric($height)) { 
+            // $heightError=' <span style="color:red">Must be numeric</span>'; 
+            // $errorsFound = true; 
+            // } 
+        // } 
+
+
+
+
+
+        
+        // echo $movie;
+        // $cart = $_POST;
+        // preShow($_POST);
+        // echo " <h1>well thats something</h1>";
+        // $_SESSION['cart'] = $_POST;
+        // preShow($_SESSION);
+
+        // header("Location: invoice.php");
+      }
+    //   else{
 ?>
 
 <!DOCTYPE html>
@@ -441,8 +551,7 @@
         </div>
 
         <!-- new movie end (4)-->
-        <form method="post" target="_blank" action="invoice.php"
-            onsubmit="return formValidate();">
+        <form action="index.php" method="post" onsubmit='console.log("Can the server do the validation?")'>
             <div class="row" id="booking-form">
                 <div class="bigCard">
                     <div class="row">
@@ -584,7 +693,7 @@
 
                             <p>
                                 <label for="cust-name">Name:</label>
-                                <input type="text" id="cust-name" name="cust[name]" placeholder="Your name" required>
+                                <input type="text" id="cust-name" name="cust[name]" placeholder="Your name" value='<?= $name ?>' > <?= $nameError ?>
                                 <span class="error" id="nameError"><br></span>
                             </p>
                             <br>
@@ -592,7 +701,7 @@
                                 <label for="cust-email">
                                     Email:
                                     <input type="cust[email]" id="cust-email" name="cust[email]"
-                                        placeholder="Your email" required>
+                                        placeholder="Your email" value='<?= $email ?>' required> <?= $emailError ?>
                                 </label>
                                 <span class="error" id="emailError"><br></span>
                             </p>
@@ -629,7 +738,7 @@
                     <div class="row">
                         <div>
                             <label for="cust[payment]">Total $</label>
-                            <input id="cust-payment" name="cust[payment]" readonly>
+                            <input id="cust-payment" name="cust[payment]" readonly><?= $paymentError ?>
                         </div>
 
                         <button type="submit" name="order" id="orderButton">Order</button>
@@ -641,7 +750,6 @@
 
 
     </section>
-
     <footer class="footer">
         <div class="inner-footer">
             <p>Lunardo Cinema phone: 0412345678 </p>
@@ -662,3 +770,11 @@
 </body>
 
 </html>
+
+
+
+<?php
+// preShow($_POST);​
+
+// // printMyCode();
+?>

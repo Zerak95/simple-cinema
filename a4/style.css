@@ -335,7 +335,7 @@ p.textMuted {
 }
 
 #booking-form{
-    display: none;
+    display: block;
 }
 
 .bigCard {

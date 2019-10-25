@@ -332,87 +332,100 @@ function priceForFCC() {
     }
 }
 
-
-document.getElementById("cust-mobile").addEventListener('blur', event => { isAustralianNumber() });
-document.getElementById("cust-name").addEventListener('blur', event => { isWesternName() });
-
-function isAustralianNumber() {
-    var mobileNumber = document.getElementById("cust-mobile");
-    var expression = /^(\(04\)|04|\+614)( ?\d){8}$/;
+    //TODO: uncomment this if you want to validate using JavaScript
+// document.getElementById("cust-mobile").addEventListener('blur', event => { isAustralianNumber() });
+// document.getElementById("cust-name").addEventListener('blur', event => { isWesternName() });
 
 
-    if (expression.test(mobileNumber.value)){
-        return true;
-    }else{
-        document.getElementById('mobileError').innerHTML = "<br>Sorry, you must use a western name";
-        return false;
-    }
-}
-
-function isWesternName() {
-    var custName = document.getElementById("cust-name");
-    var expression = /^[a-zA-Z \-.']{1,100}$/;
+    //TODO: uncomment this if you want to validate using JavaScript
+// function isAustralianNumber() {
+//     var mobileNumber = document.getElementById("cust-mobile");
+//     var expression = /^(\(04\)|04|\+614)( ?\d){8}$/;
 
 
-    if (expression.test(custName.value)) {
-        return true;
-    } else {
-        document.getElementById('nameError').innerHTML = "<br>Sorry, you must use a western name";
-        return false;
-    }
-}
+//     if (expression.test(mobileNumber.value)){
+//         return true;
+//     }else{
+//         document.getElementById('mobileError').innerHTML = "<br>Sorry, you must use a western name";
+//         return false;
+//     }
+// }
 
-function isValidCreditCard() {
-    var custCard = document.getElementById("credit-card");
-    var expression = /^(?:4\d{3}|5[1-5]\d{2}|6011|3[47]\d{2})([-\s]?)\d{4}\1\d{4}\1\d{3,4}$/;
+
+
+    //TODO: uncomment this if you want to validate using JavaScript
+// function isWesternName() {
+//     var custName = document.getElementById("cust-name");
+//     var expression = /^[a-zA-Z \-.']{1,100}$/;
+
+
+//     if (expression.test(custName.value)) {
+//         return true;
+//     } else {
+//         document.getElementById('nameError').innerHTML = "<br>Sorry, you must use a western name";
+//         return false;
+//     }
+// }
+
+
+
+
+    //TODO: uncomment this if you want to validate using JavaScript
+// function isValidCreditCard() {
+//     var custCard = document.getElementById("credit-card");
+//     var expression = /^(?:4\d{3}|5[1-5]\d{2}|6011|3[47]\d{2})([-\s]?)\d{4}\1\d{4}\1\d{3,4}$/;
   
-    if (expression.test(custCard.value)) {
-        return true;
-    } else {
-        document.getElementById('creditCardError').innerHTML = "<br>Sorry, you must use a valid Credit Card";
-        return false;
-    }
-}
+//     if (expression.test(custCard.value)) {
+//         return true;
+//     } else {
+//         document.getElementById('creditCardError').innerHTML = "<br>Sorry, you must use a valid Credit Card";
+//         return false;
+//     }
+// }
 
-function setExpiryDate() {
-    var date = new Date;
-    var currentMonth = date.getMonth();
-    var currentYear = date.getFullYear();
 
-    //the month value is 1 less than curent month since 0 is counted for Jan
-    currentMonth++
 
-    var nextMonth = parseInt(currentMonth) + 1;
-    var nextYear = currentYear;
 
-    if (currentMonth >= 12) {
-        nextMonth = 1;
-        nextYear = parseInt(currentYear) + 1;
-    }
+    //TODO: uncomment this if you want to validate using JavaScript
+// function setExpiryDate() {
+//     var date = new Date;
+//     var currentMonth = date.getMonth();
+//     var currentYear = date.getFullYear();
 
-    if (nextMonth < 10) {
-        nextMonth = "0" + nextMonth;
-    }
+//     //the month value is 1 less than curent month since 0 is counted for Jan
+//     currentMonth++
 
-    var minDate = "" + nextYear + "-" + nextMonth;
+//     var nextMonth = parseInt(currentMonth) + 1;
+//     var nextYear = currentYear;
 
-    document.getElementById('cust-expiry').setAttribute("min", minDate);
+//     if (currentMonth >= 12) {
+//         nextMonth = 1;
+//         nextYear = parseInt(currentYear) + 1;
+//     }
+
+//     if (nextMonth < 10) {
+//         nextMonth = "0" + nextMonth;
+//     }
+
+//     var minDate = "" + nextYear + "-" + nextMonth;
+
+//     document.getElementById('cust-expiry').setAttribute("min", minDate);
     
-}
+// }
 
+    //TODO: uncomment this if you want to validate using JavaScript
+// function formValidate() {
+//     clearErrors();
+//     var countErrors = 0;
 
-function formValidate() {
-    clearErrors();
-    var countErrors = 0;
+//     if (!isWesternName()) countErrors++;
+//     if (!isAustralianNumber()) countErrors++;
+//     if (!isValidCreditCard()) countErrors++;
 
-    if (!isWesternName()) countErrors++;
-    if (!isAustralianNumber()) countErrors++;
-    if (!isValidCreditCard()) countErrors++;
-
-    // Block or allow submission depending on number of errors
-    // console.log(countErrors);
-    return (countErrors == 0);
-}
+//     // Block or allow submission depending on number of errors
+//     // console.log(countErrors);
+//     return (countErrors == 0);
+// }
 
 function clearErrors() {
     var allErrors = document.getElementsByClassName('error');
