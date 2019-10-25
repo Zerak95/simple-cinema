@@ -9,12 +9,17 @@ $seats = $_POST['seats']['FCC'];
 // $seatsSTA = $_POST['seats']['STA'];
 
 // echo "this is test 3\n";
-
+echo "<br><br><br>";
 
 echo "\n\nPOST\n\n";
 
 echo "\n\nseats\n\n";
 echo $seats;
+
+echo "<br><br><br>";
+echo "SESSION\n";
+
+print_r($_SESSION);
 
 
 

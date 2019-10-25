@@ -1,3 +1,7 @@
+<?php 
+    include_once('tools.php'); 
+?>
+
 <!DOCTYPE html>
 <html lang='en'>
 <head>
