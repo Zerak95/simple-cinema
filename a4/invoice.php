@@ -303,41 +303,16 @@ function updateCost() {
 
 
 
-// echo "<br><br><br>";
-// echo "<br><br><br>";
+
+// $seatTest = $seatCodePrice['FCPdiscount'] *3;
+// $seatTest = number_format((float)$seatTest, 2, '.', '');
+
+// // $seatTest = '$' . $seatTest;
+// // echo "<br> seatCodePrice * 3: <br>";
+// // echo $seatTest;
 
 
-// echo "<br><br><br>";
-// echo "th final price is: <br>";
-// echo $finalPrice;
-// echo "<br><br><br>";
-
-
-
-
-
-// preShow($_SESSION);
-
-// echo "<br><br><br> preShow of the 3";
-// preShow($movieArray);
-// preShow($seatsArray);
-// preShow($custArray);
-
-// echo "<br><br><br> seatCodePrice <br>";
-// preShow($seatCodePrice);
-
-// echo "<br> seatCodePrice: <br>";
-// echo $seatCodePrice['FCPdiscount'];
-
-$seatTest = $seatCodePrice['FCPdiscount'] *3;
-$seatTest = number_format((float)$seatTest, 2, '.', '');
-
-// $seatTest = '$' . $seatTest;
-// echo "<br> seatCodePrice * 3: <br>";
-// echo $seatTest;
-
-
-// echo "<br><br><br>";
+// // echo "<br><br><br>";
 
 
 
@@ -438,7 +413,7 @@ function printAllTickets(){
         $seatsNumberFC = $seatsNumberFC + 1;
     }
 
-    echo "<br><br><br>";
+    echo "<br><br><br><br><br>";
 
     for ($x = 0; $x < $standardSeatsNumber; $x++) {
         printTickets("Standar Ticket");
@@ -587,6 +562,8 @@ function printAllTickets(){
 
     unset($_SESSION);
     session_destroy();
+    echo "<br><br>PAGE CODE<br><br>";
+    printMyCode();
 ?>
 
 
