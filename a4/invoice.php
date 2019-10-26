@@ -7,10 +7,19 @@ if(!isset($_SESSION['cart'])){
 }
 
 
+
+
+
+
+
 $movieArray = $_SESSION['cart']['movie'];
 $seatsArray = $_SESSION['cart']['seats'];
 $custArray = $_SESSION['cart']['cust'];
 
+$current_date = date("Y-m-d");
+
+
+    
 $isDiscount = false;
 
 
@@ -46,6 +55,36 @@ $seatCodePrice = [
 
 //See if this time and day have a  discount
 discountApply();
+
+    //TODO: active this after testing
+updateCost();
+
+// $booking = array($current_date, $custArray['name'], $custArray['email'],
+//     $custArray['mobile'], $movieArray['id'], $movieArray['day'], $movieArray['hour'],
+//     $seatsArray['STA'],  $seatsArray['STP'],$seatsArray['STC'],  $seatsArray['FCA'],
+//     $seatsArray['FCP'],$seatsArray['FCC'], $finalPrice
+// );
+
+$booking = array('date' => $current_date, 'Name' => $custArray['name'], 'Email' =>  $custArray['email'],
+    'Mobile' =>  $custArray['mobile'], 'MovieID' => $movieArray['id'], 'Day' => $movieArray['day'],
+    'Hour' => $movieArray['hour'], 'STA' => $seatsArray['STA'], 'STP' => $seatsArray['STP'],
+    'STC' => $seatsArray['STC'], 'FCA' => $seatsArray['FCA'], 'FCP' => $seatsArray['FCP'],
+    'FCC' => $seatsArray['FCC'], 'Total' => $finalPrice
+);
+
+preShow($booking);
+
+$filename = "bookings.txt";
+$fp = fopen($filename,"a");
+flock($fp, LOCK_EX);
+
+fputcsv($fp, $booking, "\t");
+
+// foreach ($booking as $fields){
+//     fputcsv($fp, $fields, "\t");
+// }
+flock($fp, LOCK_UN);
+fclose($fp);
 
 
 
@@ -251,8 +290,7 @@ function updateCost() {
     priceForFCC();
     finalCost();
 }
-    //TODO: active this after testing
-updateCost();
+
 
 
 echo "<br><br><br>";
