@@ -786,8 +786,9 @@
 
 
 
-<?=
-preShow($_POST);​
 
-// // printMyCode();
+<?= 
+    preShow($_POST);
+    echo "<br><br>PAGE CODE<br><br>";
+    printMyCode();
 ?>
