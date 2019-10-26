@@ -11,6 +11,78 @@ $movieArray = $_SESSION['cart']['movie'];
 $seatsArray = $_SESSION['cart']['seats'];
 $custArray = $_SESSION['cart']['cust'];
 
+$isDiscount = false;
+
+$STAtotal = 0;
+$STPtotal = 0;
+$STCtotal = 0;
+$FCAtotal = 0;
+$FCPtotal = 0;
+$FCCtotal = 0;
+$finalPrice = 0;
+
+
+
+$seatCodePrice = [
+    'STAdiscount' => '14.00',
+    'STAnormal' => '19.80',
+
+    'STPdiscount' => '12.50',
+    'STPnormal' => '17.50',
+
+    'STCdiscount' => '11.00',
+    'STCnormal' => '15.30',
+
+    'FCAdiscount' => '24.00',
+    'FCAnormal' => '30.00',
+
+    'FCPdiscount' => '22.50',
+    'FCPnormal' => '27.00',
+
+    'FCCdiscount' => '21.00',
+    'FCCnormal' => '24.00'
+];
+                         // 0      1      2      3      4      5      6
+// var arrayOfDayShort = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+
+function discountApply() {
+    if ($movieArray['day'] == "MON" || $movieArray['day'] == "WED") {
+        $isDiscount = true;
+
+    } else if ($movieArray['day'] == "TUE" || $movieArray['day'] == "THU" || $movieArray['day'] == "FRI") {
+        if ($movieArray['hour'] == "T12") {
+            $isDiscount = true;
+        } else {
+            $isDiscount = false;
+        }
+    } else {
+        $isDiscount = false;
+    }
+}
+
+
+
+function priceForSTA() {
+    $numberOfSeats = $seatsArray['STA'];
+
+    if (empty($numberOfSeats)) {
+        $STAtotal = 0;
+    } else {
+        if ($isDiscount) {
+            $STAtotal = parseInt(numberOfSeats) * seatCodePrice.STAdiscount;
+        } else {
+            $STAtotal = parseInt(numberOfSeats) * seatCodePrice.STAnormal;
+        }
+    }
+
+}
+
+
+
+
+
+
+
 echo "<br><br><br>";
 
 
@@ -24,7 +96,16 @@ preShow($movieArray);
 preShow($seatsArray);
 preShow($custArray);
 
+echo "<br><br><br> seatCodePrice <br>";
+preShow($seatCodePrice);
 
+echo "<br> seatCodePrice: <br>";
+echo $seatCodePrice['FCPdiscount'];
+
+$seatTest = $seatCodePrice['FCPdiscount'] *3;
+
+echo "<br> seatCodePrice * 3: <br>";
+echo $seatTest;
 
 
 echo "<br><br><br>";
