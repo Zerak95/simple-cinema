@@ -13,6 +13,7 @@ $custArray = $_SESSION['cart']['cust'];
 
 $isDiscount = false;
 
+
 $STAtotal = 0;
 $STPtotal = 0;
 $STCtotal = 0;
@@ -42,43 +43,226 @@ $seatCodePrice = [
     'FCCdiscount' => '21.00',
     'FCCnormal' => '24.00'
 ];
+
+//See if this time and day have a  discount
+discountApply();
+
+
+
                          // 0      1      2      3      4      5      6
 // var arrayOfDayShort = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 
 function discountApply() {
+    global $movieArray;
+    global $isDiscount;
+
+    echo"at the start of discountApply isDiscount: ";
+    echo $isDiscount;
+    echo "<br><br>";
+
     if ($movieArray['day'] == "MON" || $movieArray['day'] == "WED") {
         $isDiscount = true;
+
+        echo"first loop of discountApply isDiscount: ";
+        echo $isDiscount;
+        echo "<br><br>";
 
     } else if ($movieArray['day'] == "TUE" || $movieArray['day'] == "THU" || $movieArray['day'] == "FRI") {
         if ($movieArray['hour'] == "T12") {
             $isDiscount = true;
+
+            echo"second loop of discountApply isDiscount: ";
+            echo $isDiscount;
+            echo "<br><br>";
         } else {
             $isDiscount = false;
         }
     } else {
         $isDiscount = false;
     }
+
+    echo"at the end of discountApply isDiscount: ";
+    echo $isDiscount;
+    echo "<br><br>";
 }
 
 
 
 function priceForSTA() {
-    $numberOfSeats = $seatsArray['STA'];
+    // $numberOfSeats = $seatsArray['STA'];
+    global $seatsArray;
+    global $isDiscount;
+    global $seatCodePrice;
+    global $STAtotal;
 
-    if (empty($numberOfSeats)) {
+    if (empty($seatsArray['STA'])) {
         $STAtotal = 0;
     } else {
         if ($isDiscount) {
-            $STAtotal = parseInt(numberOfSeats) * seatCodePrice.STAdiscount;
+            $STAtotal = $seatsArray['STA'] * $seatCodePrice['STAdiscount'];
         } else {
-            $STAtotal = parseInt(numberOfSeats) * seatCodePrice.STAnormal;
+            $STAtotal = $seatsArray['STA'] * $seatCodePrice['STAnormal'];
         }
     }
 
 }
 
+function priceForSTP() {
+    // $numberOfSeats = $seatsArray['STP'];
+    global $seatsArray;
+    global $isDiscount;
+    global $seatCodePrice;
+    global $STPtotal;
+
+    if (empty($seatsArray['STP'])) {
+        $STPtotal = 0;
+    } else {
+        if ($isDiscount) {
+            $STPtotal = $seatsArray['STP'] * $seatCodePrice['STPdiscount'];
+        } else {
+            $STPtotal = $seatsArray['STP'] * $seatCodePrice['STPnormal'];
+        }
+    }
+
+}
+
+function priceForSTC() {
+    // $numberOfSeats = $seatsArray['STC'];
+    global $seatsArray;
+    global $isDiscount;
+    global $seatCodePrice;
+    global $STCtotal;
+
+    if (empty($seatsArray['STC'])) {
+        $STCtotal = 0;
+    } else {
+        if ($isDiscount) {
+            $STCtotal = $seatsArray['STC'] * $seatCodePrice['STCdiscount'];
+        } else {
+            $STCtotal = $seatsArray['STC'] * $seatCodePrice['STCnormal'];
+        }
+    }
+
+}
+
+function priceForFCA() {
+    // $numberOfSeats = $seatsArray['FCA'];
+    global $seatsArray;
+    global $isDiscount;
+    global $seatCodePrice;
+    global $FCAtotal;
+
+    if (empty($seatsArray['FCA'])) {
+        $FCAtotal = 0;
+    } else {
+        if ($isDiscount) {
+            $FCAtotal = $seatsArray['FCA'] * $seatCodePrice['FCAdiscount'];
+        } else {
+            $FCAtotal = $seatsArray['FCA'] * $seatCodePrice['FCAnormal'];
+        }
+    }
+
+}
+
+function priceForFCP() {
+    // $numberOfSeats = $seatsArray['FCP'];
+    global $seatsArray;
+    global $isDiscount;
+    global $seatCodePrice;
+    global $FCPtotal;
+
+    if (empty($seatsArray['FCP'])) {
+        $FCPtotal = 0;
+    } else {
+        if ($isDiscount) {
+            $FCPtotal = $seatsArray['FCP'] * $seatCodePrice['FCPdiscount'];
+        } else {
+            $FCPtotal = $seatsArray['FCP'] * $seatCodePrice['FCPnormal'];
+        }
+    }
+
+}
+
+//TODO: delete this
+echo"FCCtotal seatsArray['FCC'] is: ";
+echo $seatsArray['FCC'];
+echo "<br><br>";
 
 
+function priceForFCC() {
+    // $numberOfSeats = $seatsArray['FCC'];
+    global $seatsArray;
+    global $isDiscount;
+    global $seatCodePrice;
+    global $FCCtotal;
+
+    if (empty($seatsArray['FCC'])) {
+        echo"FCCtotal seatsArray['FCC'] is empty ";
+        echo "<br><br>";
+        $FCCtotal = 0;
+    } else {
+        if ($isDiscount) {
+            echo"FCCtotal seatsArray['FCC'] is discount ";
+            echo "<br><br>";
+            $FCCtotal = $seatsArray['FCC'] * $seatCodePrice['FCCdiscount'];
+        } else {
+            echo"FCCtotal seatsArray['FCC'] is not discount ";
+            echo "<br><br>";
+            $FCCtotal = $seatsArray['FCC'] * $seatCodePrice['FCCnormal'];
+        }
+    }
+
+    echo"FCCtotal after priceForFCC is: ";
+    echo $FCCtotal;
+    echo "<br><br>";
+
+}
+
+
+function finalCost() {
+    global $STPtotal;
+    global $STCtotal;
+    global $STAtotal;
+    global $FCAtotal;
+    global $FCPtotal;
+    global $FCCtotal;
+
+    global $finalPrice;
+
+    echo"FCCtotal is: ";
+    echo $FCCtotal;
+    echo "<br><br>";
+    $finalPrice = $STAtotal + $STPtotal + $STCtotal + $FCAtotal + $FCPtotal + $FCCtotal;
+    $finalPrice = number_format((float)$finalPrice, 2, '.', '');
+    $finalPrice = '$' . $finalPrice;
+}
+
+
+
+
+
+//TODO: add a counter for the type of seat in the priceFor methods
+function updateCost() {
+    priceForSTA();
+    priceForSTP();
+    priceForSTC();
+    priceForFCA();
+    priceForFCP();
+    priceForFCC();
+    finalCost();
+}
+    //TODO: active this after testing
+updateCost();
+
+
+echo "<br><br><br>";
+echo "<br><br><br>";
+
+
+echo "<br><br><br>";
+echo "th final price is: <br>";
+echo $finalPrice;
+echo "<br><br><br>";
 
 
 
@@ -103,7 +287,9 @@ echo "<br> seatCodePrice: <br>";
 echo $seatCodePrice['FCPdiscount'];
 
 $seatTest = $seatCodePrice['FCPdiscount'] *3;
+$seatTest = number_format((float)$seatTest, 2, '.', '');
 
+$seatTest = '$' . $seatTest;
 echo "<br> seatCodePrice * 3: <br>";
 echo $seatTest;
 
