@@ -26,8 +26,10 @@ window.onscroll = function () {
 
 function showSynopsis(id) {
     hideAllSynopsis();
-    hideBookingForm();
-    setExpiryDate();
+    // hideBookingForm();
+    // setExpiryDate();
+
+    removeDayOfMovie();
 
     var x = document.getElementById(id);
     x.style.display = "block";
@@ -36,6 +38,7 @@ function showSynopsis(id) {
     tempSynopsisID = id;
     tempMovieName = document.querySelector("#" + CSS.escape(tempSynopsisID) + " .movieName").textContent;
     document.getElementById("movieTitle").innerHTML = tempMovieName;
+    
 }
 
 function setMovieID(movieID) {
@@ -49,10 +52,10 @@ function hideSynopsis(id) {
     x.style.display = "none";
 }
 
-function hideBookingForm() {
-    var x = document.getElementById("booking-form");
-    x.style.display = "none";
-}
+// function hideBookingForm() {
+//     var x = document.getElementById("booking-form");
+//     x.style.display = "none";
+// }
 
 function showBookingForm() {
     var x = document.getElementById("booking-form");
@@ -124,7 +127,7 @@ function timeButtonsInfo(button) {
 
     //this is done to make sure that the customer cant change the day and during
     //      seat selection without having to reset everything 
-    hideAllSynopsis();
+    // hideAllSynopsis();
 }
 
 //if the day is part of tempMovieDayTime return true
@@ -145,6 +148,13 @@ function setDayOfMovie() {
 
         }
     }
+}
+
+function removeDayOfMovie() {
+
+    document.getElementById("movieDay").innerHTML = '';
+    document.getElementById("movie-day").value = '';
+    document.getElementById("movie-hour").value = '';
 }
 
 
@@ -346,7 +356,7 @@ function priceForFCC() {
 //     if (expression.test(mobileNumber.value)){
 //         return true;
 //     }else{
-//         document.getElementById('mobileError').innerHTML = "<br>Sorry, you must use a western name";
+//         document.getElementById('mobileError').innerHTML = "<br>You must use a valid Australian number";
 //         return false;
 //     }
 // }

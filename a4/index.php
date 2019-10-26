@@ -8,7 +8,14 @@
     $email='';
     $creditCard='';
     $payment='';
-    $move='';
+
+
+
+    $movieID='';
+    $moveDay='';
+    $moveTime='';
+
+    //TODO: givee move a value if it doesnt work
 
     // === day time movie  ====
 
@@ -27,20 +34,34 @@
     //     echo $movie;
     //     // $_SESSION['movie'] = $_POST['movie'];
     //   }
+//   if (empty($move)) {
+//         $moveError=' <span style="color:red">you must selcet a move first</span>'; 
+//         // $errorsFound = true; 
+//     }
 
     if(!empty($_POST)){
         // $movie = $_POST['movie'];
         $name = $_POST['cust']['name'];
-        $email= $_POST['cust']['email'];
-        $phoneNumber= $_POST['cust']['mobile'];
-        $creditCard= $_POST['cust']['card'];
-        $expiryDate= $_POST['cust']['expiry'];
-        $payment= $_POST['cust']['payment'];
-        $movie= $_POST['movie']['id'];
+        $email = $_POST['cust']['email'];
+        $phoneNumber = $_POST['cust']['mobile'];
+        $creditCard = $_POST['cust']['card'];
+        $expiryDate = $_POST['cust']['expiry'];
+        $payment = $_POST['cust']['payment'];
+
+        $movieID = $_POST['movie']['id'];
+        $moveDay = $_POST['movie']['day'];
+        $moveTime = $_POST['movie']['hour'];
         
         
 
-        if (empty($name)) { 
+
+        if (empty($movieID)) {
+            $moveError=' <span style="color:red">you must selcet a move first</span>'; 
+            // $errorsFound = true; 
+        }else if (empty($moveDay) || empty($moveTime)) { 
+            $moveError=' <span style="color:red">you must selcet a time first</span>'; 
+            // $errorsFound = true; 
+        }else if (empty($name)) { 
             $nameError=' <span style="color:red">Cannot be blank</span>'; 
             // $errorsFound = true; 
         }else if (empty($email)) { 
@@ -56,12 +77,24 @@
             $expiryDateError=' <span style="color:red">Cannot be blank</span>'; 
             // $errorsFound = true; 
         }else if (empty($payment)) {
-            $paymentError=' <span style="color:red">you must selcet at least 1 seat</span>'; 
+            $paymentError=' <span style="color:red">You must selcet at least 1 seat</span>'; 
             // $errorsFound = true; 
-        }else if (empty($move)) {
-            $moveError=' <span style="color:red">you must selcet a move first</span>'; 
-            // $errorsFound = true; 
+        }else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $emailError=' <span style="color:red">This is not a valid email</span>'; 
+        }else if(!preg_match("/^(\(04\)|04|\+614)( ?\d){8}$/", $phoneNumber)){
+            $phoneNumberError=' <span style="color:red">You must use a valid Australian number</span>';
+        }else if(!preg_match("/^[a-zA-Z \-.']{1,100}$/", $name)){
+            $nameError=' <span style="color:red">You must use a western name</span>';
+        }else if(!preg_match("/\d( ?\d){13,18}/", $creditCard)){
+            $creditCardError=' <span style="color:red">You must use a valid Credit Card</span>';
         }
+        
+
+        //TODO: rearange the validation checks 
+
+        //TODO: validate  expiry date
+
+        //TODO: make sure seat number carrys over
         
         
         
@@ -557,12 +590,12 @@
                     <div class="row">
                         <div class="column">
                             <div class="row">
-                                <p> <span id="movieTitle">Movie Title</span> - <span id="movieDay">Day</span> - <span
-                                        id="movieTime">Time</span>pm</p>
+                                <p> <span id="movieTitle"><?= $movieID ?></span> - <span id="movieDay"><?= $moveDay ?></span> - <span
+                                        id="movieTime"><?= $moveTime ?></span>pm</p>  <?= $moveError ?>
                             </div>
-                            <input type="hidden" name="movie[id]" id="movie-id" value="">
-                            <input type="hidden" name="movie[day]" id="movie-day" value="">
-                            <input type="hidden" name="movie[hour]" id="movie-hour" value="">
+                            <input type="hidden" name="movie[id]" id="movie-id" value="<?= $movieID ?>">
+                            <input type="hidden" name="movie[day]" id="movie-day" value="<?= $moveDay ?>">
+                            <input type="hidden" name="movie[hour]" id="movie-hour" value="<?= $moveTime ?>">
 
                             <div class="row">
                                 <div class="formCard">
@@ -701,28 +734,28 @@
                                 <label for="cust-email">
                                     Email:
                                     <input type="cust[email]" id="cust-email" name="cust[email]"
-                                        placeholder="Your email" value='<?= $email ?>' required> <?= $emailError ?>
+                                        placeholder="Your email" value='<?= $email ?>' > <?= $emailError ?>
                                 </label>
                                 <span class="error" id="emailError"><br></span>
                             </p>
                             <br>
                             <p>
                                 <label for="cust-mobile">Mobile:</label>
-                                <input type="tel" id="cust-mobile" name="cust[mobile]" required
-                                    placeholder="Your mobile number">
+                                <input type="tel" id="cust-mobile" name="cust[mobile]" placeholder="Your mobile number" 
+                                    value='<?= $phoneNumber ?>' > <?= $phoneNumberError ?>
                                 <span class="error" id="mobileError"><br></span>
                             </p>
                             <br>
                             <p>
                                 <label for="credit-card">Credit Card:</label>
                                 <input type="text" id="credit-card" name="cust[card]"
-                                    placeholder="Your Credit Card number">
+                                    placeholder="Your Credit Card number" value='<?= $creditCard ?>' > <?= $creditCardError ?>
                                 <span class="error" id="creditCardError"><br></span>
                             </p>
                             <br>
                             <p>
                                 <label for="cust-expiry">Expiry</label>
-                                <input type="month" name="cust[expiry]" id="cust-expiry" required>
+                                <input type="month" name="cust[expiry]" id="cust-expiry"  value='<?= $expiryDate ?>' > <?= $expiryDateError ?>
                             </p>
                         </div>
 
@@ -773,8 +806,8 @@
 
 
 
-<?php
-// preShow($_POST);​
+<?=
+preShow($_POST);​
 
 // // printMyCode();
 ?>
