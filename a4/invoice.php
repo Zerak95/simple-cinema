@@ -31,6 +31,14 @@ $FCPtotal = 0;
 $FCCtotal = 0;
 $finalPrice = 0;
 
+$standardSeatsPrice = 0;
+$firstClassSeatsPrice = 0;
+$GST = 0;
+
+$standardSeatsNumber = 0;
+$firstClassSeatsNumber = 0;
+$seatsNumber = 0;
+
 
 
 $seatCodePrice = [
@@ -80,9 +88,6 @@ flock($fp, LOCK_EX);
 
 fputcsv($fp, $booking, "\t");
 
-// foreach ($booking as $fields){
-//     fputcsv($fp, $fields, "\t");
-// }
 flock($fp, LOCK_UN);
 fclose($fp);
 
@@ -133,9 +138,11 @@ function priceForSTA() {
     global $isDiscount;
     global $seatCodePrice;
     global $STAtotal;
+    global $standardSeatsNumber;
 
     if (empty($seatsArray['STA'])) {
         $STAtotal = 0;
+        $standardSeatsNumber = $standardSeatsNumber + $seatsArray['STA'];
     } else {
         if ($isDiscount) {
             $STAtotal = $seatsArray['STA'] * $seatCodePrice['STAdiscount'];
@@ -152,9 +159,11 @@ function priceForSTP() {
     global $isDiscount;
     global $seatCodePrice;
     global $STPtotal;
+    global $standardSeatsNumber;
 
     if (empty($seatsArray['STP'])) {
         $STPtotal = 0;
+        $standardSeatsNumber = $standardSeatsNumber + $seatsArray['STP'];
     } else {
         if ($isDiscount) {
             $STPtotal = $seatsArray['STP'] * $seatCodePrice['STPdiscount'];
@@ -171,9 +180,11 @@ function priceForSTC() {
     global $isDiscount;
     global $seatCodePrice;
     global $STCtotal;
+    global $standardSeatsNumber;
 
     if (empty($seatsArray['STC'])) {
         $STCtotal = 0;
+        $standardSeatsNumber = $standardSeatsNumber + $seatsArray['STC'];
     } else {
         if ($isDiscount) {
             $STCtotal = $seatsArray['STC'] * $seatCodePrice['STCdiscount'];
@@ -190,9 +201,11 @@ function priceForFCA() {
     global $isDiscount;
     global $seatCodePrice;
     global $FCAtotal;
+    global $firstClassSeatsNumber;
 
     if (empty($seatsArray['FCA'])) {
         $FCAtotal = 0;
+        $firstClassSeatsNumber = $firstClassSeatsNumber + $seatsArray['FCA'];
     } else {
         if ($isDiscount) {
             $FCAtotal = $seatsArray['FCA'] * $seatCodePrice['FCAdiscount'];
@@ -209,9 +222,11 @@ function priceForFCP() {
     global $isDiscount;
     global $seatCodePrice;
     global $FCPtotal;
+    global $firstClassSeatsNumber;
 
     if (empty($seatsArray['FCP'])) {
         $FCPtotal = 0;
+        $firstClassSeatsNumber = $firstClassSeatsNumber + $seatsArray['FCP'];
     } else {
         if ($isDiscount) {
             $FCPtotal = $seatsArray['FCP'] * $seatCodePrice['FCPdiscount'];
@@ -222,11 +237,6 @@ function priceForFCP() {
 
 }
 
-//TODO: delete this
-echo"FCCtotal seatsArray['FCC'] is: ";
-echo $seatsArray['FCC'];
-echo "<br><br>";
-
 
 function priceForFCC() {
     // $numberOfSeats = $seatsArray['FCC'];
@@ -234,27 +244,18 @@ function priceForFCC() {
     global $isDiscount;
     global $seatCodePrice;
     global $FCCtotal;
+    global $firstClassSeatsNumber;
 
     if (empty($seatsArray['FCC'])) {
-        echo"FCCtotal seatsArray['FCC'] is empty ";
-        echo "<br><br>";
         $FCCtotal = 0;
+        $firstClassSeatsNumber = $firstClassSeatsNumber + $seatsArray['FCC'];
     } else {
         if ($isDiscount) {
-            echo"FCCtotal seatsArray['FCC'] is discount ";
-            echo "<br><br>";
             $FCCtotal = $seatsArray['FCC'] * $seatCodePrice['FCCdiscount'];
         } else {
-            echo"FCCtotal seatsArray['FCC'] is not discount ";
-            echo "<br><br>";
             $FCCtotal = $seatsArray['FCC'] * $seatCodePrice['FCCnormal'];
         }
     }
-
-    echo"FCCtotal after priceForFCC is: ";
-    echo $FCCtotal;
-    echo "<br><br>";
-
 }
 
 
@@ -267,13 +268,31 @@ function finalCost() {
     global $FCCtotal;
 
     global $finalPrice;
+    global $GST;
+    global $standardSeatsPrice;
+    global $firstClassSeatsPrice;
 
     echo"FCCtotal is: ";
     echo $FCCtotal;
     echo "<br><br>";
     $finalPrice = $STAtotal + $STPtotal + $STCtotal + $FCAtotal + $FCPtotal + $FCCtotal;
+    $GST = $finalPrice / 11;
+    $standardSeatsPrice = $STAtotal + $STPtotal + $STCtotal;
+    $firstClassSeatsPrice = $FCAtotal + $FCPtotal + $FCCtotal;
+
     $finalPrice = number_format((float)$finalPrice, 2, '.', '');
     $finalPrice = '$' . $finalPrice;
+
+    $GST = number_format((float)$GST, 2, '.', '');
+    $GST = '$' . $GST;
+
+    $standardSeatsPrice = number_format((float)$standardSeatsPrice, 2, '.', '');
+    $standardSeatsPrice = '$' . $standardSeatsPrice;
+
+    $firstClassSeatsPrice = number_format((float)$firstClassSeatsPrice, 2, '.', '');
+    $firstClassSeatsPrice = '$' . $firstClassSeatsPrice;
+
+
 }
 
 
@@ -335,6 +354,72 @@ echo $seatTest;
 echo "<br><br><br>";
 
 
+
+
+
+
+
+
+
+function printFirstClassTicket(){
+    global $seatsNumber;
+    echo "<div class='invoice-box'>
+        <table cellpadding='0' cellspacing='0'>
+            <tr class='top'>
+                <td colspan='2'>
+                    <table>
+                        <tr>
+                            <td class='title'>
+                                <img id='logoImageTicket' src='../../media/cinema-logo.jpg' alt='Cinema Logo'>
+                            </td>
+                            
+                            <td>
+                                First Class Ticket<br>
+                                
+                                Seat number<br>
+
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+   
+ 
+            <tr class='heading'>
+                <td>
+                    Movie Code
+                </td>
+                
+                <td>
+                    enter code here
+                </td>
+            </tr>
+            
+            <tr class='item'>
+                <td>
+                    Movie Day
+                </td>
+                
+                <td>
+                    enter day here
+                </td>
+            </tr>
+            
+            <tr class='heading'>
+                <td>
+                    Movie Time
+                </td>
+                
+                <td>
+                    enter time here
+                </td>
+            </tr>
+            
+        </table>
+    </div>";
+
+    $seatsNumber = $seatsNumber + 1;
+}
 
 //this comes out blank
 // print_r($_POST);
@@ -560,7 +645,7 @@ echo "<br><br><br>";
 
 // echo $_POST["cust"];
 
-
+    //TODO: moce this to the end of the file
 unset($_SESSION);
 session_destroy();
 
@@ -568,4 +653,117 @@ session_destroy();
 
 
 ?>
+
+
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Assignment 2</title>
+
+    <!-- TODO: make usre you fix the font family -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link id='stylecss' type="text/css" rel="stylesheet" href="invoice_style.css">
+</head>
+<body>
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img id="logoImage" src="../../media/cinema-logo.jpg" alt="Cinema Logo">
+                            </td>
+                            
+                            <td>
+                                Invoice #: 123<br>
+                                
+                                Created: <?= $current_date ?><br>
+
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                Lunardo Cinema<br>
+                                123 Flinders Street<br>
+                                Melburne, vic 3000
+                            </td>
+                            
+                            <td>
+                                phone: 0412345678<br>
+                                Email: Lunardo@Cinema.net Address
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            
+            
+            
+            <tr class="heading">
+                <td>
+                    Item
+                </td>
+                
+                <td>
+                    Price
+                </td>
+            </tr>
+            
+            <tr class="item">
+                <td>
+                    Standard Seats
+                </td>
+                
+                <td>
+                    <?= $standardSeatsPrice ?>
+                </td>
+            </tr>
+            
+            <tr class="item">
+                <td>
+                    First Class Seats
+                </td>
+                
+                <td>
+                    <?= $firstClassSeatsPrice ?>
+                </td>
+            </tr>
+            
+            
+            
+            <tr class="total">
+                <td></td>
+                
+                <td>
+                   Total: <?= $finalPrice ?>
+                </td>
+            </tr>
+            
+            <tr class="total">
+                <td></td>
+                
+                <td>
+                   GST: <?= $GST ?>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <?= printFirstClassTicket(); ?>
+</body>
+</html>
+
+
 
