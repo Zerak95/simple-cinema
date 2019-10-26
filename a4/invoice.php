@@ -37,7 +37,12 @@ $GST = 0;
 
 $standardSeatsNumber = 0;
 $firstClassSeatsNumber = 0;
-$seatsNumber = 0;
+$seatsNumberFC = 1;
+$seatsNumberST = 1;
+
+$movieCode = $movieArray['id'];
+$movieDay = $movieArray['day'];
+$movieTime = $movieArray['hour'];
 
 
 
@@ -67,12 +72,6 @@ discountApply();
     //TODO: active this after testing
 updateCost();
 
-// $booking = array($current_date, $custArray['name'], $custArray['email'],
-//     $custArray['mobile'], $movieArray['id'], $movieArray['day'], $movieArray['hour'],
-//     $seatsArray['STA'],  $seatsArray['STP'],$seatsArray['STC'],  $seatsArray['FCA'],
-//     $seatsArray['FCP'],$seatsArray['FCC'], $finalPrice
-// );
-
 $booking = array('date' => $current_date, 'Name' => $custArray['name'], 'Email' =>  $custArray['email'],
     'Mobile' =>  $custArray['mobile'], 'MovieID' => $movieArray['id'], 'Day' => $movieArray['day'],
     'Hour' => $movieArray['hour'], 'STA' => $seatsArray['STA'], 'STP' => $seatsArray['STP'],
@@ -80,7 +79,7 @@ $booking = array('date' => $current_date, 'Name' => $custArray['name'], 'Email' 
     'FCC' => $seatsArray['FCC'], 'Total' => $finalPrice
 );
 
-preShow($booking);
+// preShow($booking);
 
 $filename = "bookings.txt";
 $fp = fopen($filename,"a");
@@ -100,24 +99,15 @@ function discountApply() {
     global $movieArray;
     global $isDiscount;
 
-    echo"at the start of discountApply isDiscount: ";
-    echo $isDiscount;
-    echo "<br><br>";
 
     if ($movieArray['day'] == "MON" || $movieArray['day'] == "WED") {
         $isDiscount = true;
 
-        echo"first loop of discountApply isDiscount: ";
-        echo $isDiscount;
-        echo "<br><br>";
 
     } else if ($movieArray['day'] == "TUE" || $movieArray['day'] == "THU" || $movieArray['day'] == "FRI") {
         if ($movieArray['hour'] == "T12") {
             $isDiscount = true;
 
-            echo"second loop of discountApply isDiscount: ";
-            echo $isDiscount;
-            echo "<br><br>";
         } else {
             $isDiscount = false;
         }
@@ -125,9 +115,6 @@ function discountApply() {
         $isDiscount = false;
     }
 
-    echo"at the end of discountApply isDiscount: ";
-    echo $isDiscount;
-    echo "<br><br>";
 }
 
 
@@ -142,8 +129,9 @@ function priceForSTA() {
 
     if (empty($seatsArray['STA'])) {
         $STAtotal = 0;
-        $standardSeatsNumber = $standardSeatsNumber + $seatsArray['STA'];
     } else {
+        $standardSeatsNumber = $standardSeatsNumber + $seatsArray['STA'];
+
         if ($isDiscount) {
             $STAtotal = $seatsArray['STA'] * $seatCodePrice['STAdiscount'];
         } else {
@@ -163,8 +151,9 @@ function priceForSTP() {
 
     if (empty($seatsArray['STP'])) {
         $STPtotal = 0;
-        $standardSeatsNumber = $standardSeatsNumber + $seatsArray['STP'];
     } else {
+        $standardSeatsNumber = $standardSeatsNumber + $seatsArray['STP'];
+
         if ($isDiscount) {
             $STPtotal = $seatsArray['STP'] * $seatCodePrice['STPdiscount'];
         } else {
@@ -183,9 +172,10 @@ function priceForSTC() {
     global $standardSeatsNumber;
 
     if (empty($seatsArray['STC'])) {
-        $STCtotal = 0;
-        $standardSeatsNumber = $standardSeatsNumber + $seatsArray['STC'];
+        $STCtotal = 0;        
     } else {
+        $standardSeatsNumber = $standardSeatsNumber + $seatsArray['STC'];
+  
         if ($isDiscount) {
             $STCtotal = $seatsArray['STC'] * $seatCodePrice['STCdiscount'];
         } else {
@@ -205,8 +195,9 @@ function priceForFCA() {
 
     if (empty($seatsArray['FCA'])) {
         $FCAtotal = 0;
-        $firstClassSeatsNumber = $firstClassSeatsNumber + $seatsArray['FCA'];
     } else {
+        $firstClassSeatsNumber = $firstClassSeatsNumber + $seatsArray['FCA'];
+
         if ($isDiscount) {
             $FCAtotal = $seatsArray['FCA'] * $seatCodePrice['FCAdiscount'];
         } else {
@@ -226,8 +217,9 @@ function priceForFCP() {
 
     if (empty($seatsArray['FCP'])) {
         $FCPtotal = 0;
-        $firstClassSeatsNumber = $firstClassSeatsNumber + $seatsArray['FCP'];
     } else {
+        $firstClassSeatsNumber = $firstClassSeatsNumber + $seatsArray['FCP'];
+
         if ($isDiscount) {
             $FCPtotal = $seatsArray['FCP'] * $seatCodePrice['FCPdiscount'];
         } else {
@@ -248,8 +240,9 @@ function priceForFCC() {
 
     if (empty($seatsArray['FCC'])) {
         $FCCtotal = 0;
-        $firstClassSeatsNumber = $firstClassSeatsNumber + $seatsArray['FCC'];
     } else {
+        $firstClassSeatsNumber = $firstClassSeatsNumber + $seatsArray['FCC'];
+
         if ($isDiscount) {
             $FCCtotal = $seatsArray['FCC'] * $seatCodePrice['FCCdiscount'];
         } else {
@@ -272,9 +265,7 @@ function finalCost() {
     global $standardSeatsPrice;
     global $firstClassSeatsPrice;
 
-    echo"FCCtotal is: ";
-    echo $FCCtotal;
-    echo "<br><br>";
+
     $finalPrice = $STAtotal + $STPtotal + $STCtotal + $FCAtotal + $FCPtotal + $FCCtotal;
     $GST = $finalPrice / 11;
     $standardSeatsPrice = $STAtotal + $STPtotal + $STCtotal;
@@ -312,48 +303,41 @@ function updateCost() {
 
 
 
-echo "<br><br><br>";
-echo "<br><br><br>";
+// echo "<br><br><br>";
+// echo "<br><br><br>";
 
 
-echo "<br><br><br>";
-echo "th final price is: <br>";
-echo $finalPrice;
-echo "<br><br><br>";
+// echo "<br><br><br>";
+// echo "th final price is: <br>";
+// echo $finalPrice;
+// echo "<br><br><br>";
 
 
 
 
-echo "<br><br><br>";
 
+// preShow($_SESSION);
 
-echo "this is to see if there is anything in _SESSION <br>";
-print_r($_SESSION);
-echo "<br><br><br> preShow";
-preShow($_SESSION);
+// echo "<br><br><br> preShow of the 3";
+// preShow($movieArray);
+// preShow($seatsArray);
+// preShow($custArray);
 
-echo "<br><br><br> preShow of the 3";
-preShow($movieArray);
-preShow($seatsArray);
-preShow($custArray);
+// echo "<br><br><br> seatCodePrice <br>";
+// preShow($seatCodePrice);
 
-echo "<br><br><br> seatCodePrice <br>";
-preShow($seatCodePrice);
-
-echo "<br> seatCodePrice: <br>";
-echo $seatCodePrice['FCPdiscount'];
+// echo "<br> seatCodePrice: <br>";
+// echo $seatCodePrice['FCPdiscount'];
 
 $seatTest = $seatCodePrice['FCPdiscount'] *3;
 $seatTest = number_format((float)$seatTest, 2, '.', '');
 
-$seatTest = '$' . $seatTest;
-echo "<br> seatCodePrice * 3: <br>";
-echo $seatTest;
+// $seatTest = '$' . $seatTest;
+// echo "<br> seatCodePrice * 3: <br>";
+// echo $seatTest;
 
 
-echo "<br><br><br>";
-
-
+// echo "<br><br><br>";
 
 
 
@@ -361,8 +345,28 @@ echo "<br><br><br>";
 
 
 
-function printFirstClassTicket(){
-    global $seatsNumber;
+// "First Class Ticket"
+
+function printTickets($string){
+    global $seatsNumberFC;
+    global $seatsNumberST;
+    global $movieCode;
+    global $movieDay;
+    global $movieTime;
+
+    $seatsNumberG = 0;
+
+    if ($string == "First Class Ticket") {
+        $seatsNumberG = $seatsNumberFC;
+    }
+
+    if ($string == "Standar Ticket") {
+        $seatsNumberG = $seatsNumberST;
+    }
+    
+
+    
+    echo "<br><br>";
     echo "<div class='invoice-box'>
         <table cellpadding='0' cellspacing='0'>
             <tr class='top'>
@@ -374,9 +378,9 @@ function printFirstClassTicket(){
                             </td>
                             
                             <td>
-                                First Class Ticket<br>
+                                $string<br>
                                 
-                                Seat number<br>
+                                $seatsNumberG<br>
 
                             </td>
                         </tr>
@@ -391,7 +395,7 @@ function printFirstClassTicket(){
                 </td>
                 
                 <td>
-                    enter code here
+                $movieCode
                 </td>
             </tr>
             
@@ -401,7 +405,7 @@ function printFirstClassTicket(){
                 </td>
                 
                 <td>
-                    enter day here
+                    $movieDay
                 </td>
             </tr>
             
@@ -411,14 +415,35 @@ function printFirstClassTicket(){
                 </td>
                 
                 <td>
-                    enter time here
+                    $movieTime
                 </td>
             </tr>
             
         </table>
     </div>";
 
-    $seatsNumber = $seatsNumber + 1;
+    
+}
+
+function printAllTickets(){
+    global $firstClassSeatsNumber;
+    global $standardSeatsNumber;
+    global $seatsNumberFC;
+    global $seatsNumberST;
+    echo "<br><br><br><br><br><br><br>";
+
+
+    for ($x = 0; $x < $firstClassSeatsNumber; $x++) {
+        printTickets("First Class Ticket");
+        $seatsNumberFC = $seatsNumberFC + 1;
+    }
+
+    echo "<br><br><br>";
+
+    for ($x = 0; $x < $standardSeatsNumber; $x++) {
+        printTickets("Standar Ticket");
+        $seatsNumberST = $seatsNumberST + 1;
+    }
 }
 
 //this comes out blank
@@ -430,224 +455,10 @@ function printFirstClassTicket(){
 
 
 
-// $current_date = date("Y-m");
-// echo "current_date is: " . $current_date ."<br>";
-// // $date_to_compare = date("Y-m",time()+86400); //1 day later
-// // if (strtotime($date_to_compare) > strtotime($current_date)) {
-// //    echo "too late";
-// // }
+// unset($_SESSION);
+// session_destroy();
 
-// // echo "<br><br><br>";
 
-// // $current_date = $current_date + 1;
-// // echo "current_date +1 is: " . $current_date ."<br>";
-
-// // echo "<br><br><br>";
-
-// // $current_date = $current_date + 3;
-// // echo "current_date +3 is: " . $current_date ."<br>";
-
-// echo "<br><br><br>";
-
-// $current_year = date("Y");
-// echo "current_year is: " . $current_year ."<br>";
-
-// echo "<br><br><br>";
-
-// $current_month = date("m");
-// echo "current_month is: " . $current_month ."<br>";
-
-
-// echo "<br><br><br>";
-// $yearMonth = "$current_year" . "-" . "$current_month";
-
-// echo "current_month + current_year is: " . $yearMonth ."<br>";
-
-// echo "<br><br><br>";
-// if($current_month == 10){
-//     echo "current_month is indeed 10<br>";
-// }
-
-// echo "<br><br><br>";
-// $current_month = "0" . $current_month -1;
-
-// echo "current_month - 1 is: " . $current_month ."<br>";
-// echo "current_month - 1 is: 0" . $current_month ."<br>";
-
-
-
-// // echo "<br><br><br>";
-// // $current_month = $current_month +3;
-
-// // echo "current_month + 3 is: " . $current_month ."<br>";
-
-
-
-// echo "<br><br><br>";
-// $date_to_compare = "$yearMonth" . "-" . "$current_month";
-// echo "date_to_compare  ";
-// echo $date_to_compare;
-// echo "<br>current_date";
-// echo $current_date;
-// if (strtotime($date_to_compare) < strtotime($current_date)) {
-//     echo "too not a valid date";
-// }
-// echo "<br><br><br>";
-// echo 'Next month: '. date('Y-m-d', strtotime('+1 month')) ."\n";
-
-// echo "<br><br><br>";
-// echo 'last month: '. date('Y-m-d', strtotime('-1 month')) ."\n";
-
-// echo "<br><br><br>";
-// echo 'in 5 months: '. date('Y-m-d', strtotime('-5 month')) ."\n";
-
-
-
-// echo "<br><br><br>";
-// echo "Y-m only";
-// echo "<br><br><br>";
-
-// echo 'Next month: '. date('Y-m', strtotime('+1 month')) ."\n";
-
-// echo "<br><br><br>";
-// echo 'last month: '. date('Y-m', strtotime('-1 month')) ."\n";
-
-// echo "<br><br><br>";
-// echo 'in 5 months: '. date('Y-m', strtotime('-5 month')) ."\n";
-
-// echo "<br><br><br>";
-
-// echo "check if date is bigger than other date<br>";
-
-// $current_date = date("Y-m");
-// $date_to_compare = date('Y-m', strtotime('-1 month'));
-
-// echo "date_to_compare";
-// echo $date_to_compare;
-// echo "<br>current_date";
-// echo $current_date;
-
-// if (strtotime($date_to_compare) < strtotime($current_date)) {
-//     echo "<br>date_to_compare is samller<br>";
-// }
-
-// if (strtotime($date_to_compare) > strtotime($current_date)) {
-//     echo "date_to_compare is bigger<br>";
-// }
-
-// echo "<br><br><br>";
-// echo "testing if a normal value works";
-// echo "<br>";
-// $date_to_compare = "2019-12";
-
-// echo "date_to_compare   ";
-// echo $date_to_compare;
-// echo "<br>current_date   ";
-// echo $current_date;
-
-// echo "<br>";
-
-
-// if (strtotime($date_to_compare) > strtotime($current_date)) {
-//     echo "date_to_compare is bigger<br>";
-// }
-
-// if (strtotime($date_to_compare) < strtotime($current_date)) {
-//     echo "<br>date_to_compare is samller<br>";
-// }
-
-
-
-
-
-
-
-// echo "<br><br><br>";
-// $date_to_compare = date('Y-m', strtotime('+8 month'));
-// echo "this is a final test<br>";
-// echo $date_to_compare;
-
-
-
-
-
-
-
-// echo "<br><br><br>";
-// if($current_month )
-
-
-
-
-
-
-
-// $current_month = date("Y");
-// echo "current_month is: " . $current_month ."<br>";
-
-
-
-
-
-
-// echo this is test 1
-
-// echo this is test 2;
-
-// if(isset($_POST['movie'])){
-//     $movie = $_POST['movie'];
-    
-//     echo $movie;
-//     // $_SESSION['movie'] = $_POST['movie'];
-//   }
-
-
-
-// echo "<br><br><br>";
-// // $_SESSION['movie'] = $_POST['movie'];
-// // print_r($_SESSION);
-// echo "<br><br><br>";
-
-// $movie = $_POST['movie'];
-// print_r($movie);
-// echo "<br><br><br>";
-// echo $movie;
-
-
-// $seats = $_POST['seats']['FCC'];
-// // $seatsSTA = $_POST['seats']['STA'];
-
-// // echo "this is test 3\n";
-// echo "<br><br><br>";
-
-// echo "\n\nPOST\n\n";
-
-// echo "\n\nseats\n\n";
-// echo $seats;
-
-// echo "<br><br><br>";
-// echo "SESSION\n";
-
-// print_r($_SESSION);
-
-
-
-// echo "SESSION\n";
-
-
-// echo $_SESSION;
-
-// echo "\n\nPOST\n";
-
-// echo $_POST;
-
-// echo "\n\nPOST cust\n";
-
-// echo $_POST["cust"];
-
-    //TODO: moce this to the end of the file
-unset($_SESSION);
-session_destroy();
 
 
 
@@ -761,9 +572,21 @@ session_destroy();
         </table>
     </div>
 
-    <?= printFirstClassTicket(); ?>
+    <?= 
+        
+        printAllTickets();
+
+    ?>
 </body>
 </html>
 
+
+<?= 
+        
+    preShow($_SESSION);
+
+    unset($_SESSION);
+    session_destroy();
+?>
 
 
