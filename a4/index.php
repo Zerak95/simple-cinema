@@ -15,12 +15,8 @@
     $moveDay='';
     $moveTime='';
 
-    //TODO: givee move a value if it doesnt work
-
-    // === day time movie  ====
 
     $expiryDateError=''; 
-    // $timeError='';
     $phoneNumberError=''; 
     $nameError=''; 
     $emailError='';
@@ -28,19 +24,13 @@
     $paymentError='';
     $moveError='';
 
-    // if(isset($_POST['movie'])){
-    //     $movie = $_POST['movie'];
-        
-    //     echo $movie;
-    //     // $_SESSION['movie'] = $_POST['movie'];
-    //   }
-//   if (empty($move)) {
-//         $moveError=' <span style="color:red">you must selcet a move first</span>'; 
-//         // $errorsFound = true; 
-//     }
+
 
     if(!empty($_POST)){
-        // $movie = $_POST['movie'];
+        $errorsFound = false;
+
+         //TODO: make sure seat number carrys over
+
         $name = $_POST['cust']['name'];
         $email = $_POST['cust']['email'];
         $phoneNumber = $_POST['cust']['mobile'];
@@ -52,61 +42,73 @@
         $moveDay = $_POST['movie']['day'];
         $moveTime = $_POST['movie']['hour'];
         
+        $date_next_month = date('Y-m', strtotime('+1 month'));
         
 
 
         if (empty($movieID)) {
             $moveError=' <span style="color:red">you must selcet a move first</span>'; 
-            // $errorsFound = true; 
+            $errorsFound = true; 
         }else if (empty($moveDay) || empty($moveTime)) { 
             $moveError=' <span style="color:red">you must selcet a time first</span>'; 
-            // $errorsFound = true; 
-        }else if (empty($name)) { 
-            $nameError=' <span style="color:red">Cannot be blank</span>'; 
-            // $errorsFound = true; 
-        }else if (empty($email)) { 
-            $emailError=' <span style="color:red">Cannot be blank</span>'; 
-            // $errorsFound = true; 
-        }else if (empty($phoneNumber)) { 
-            $phoneNumberError=' <span style="color:red">Cannot be blank</span>'; 
-            // $errorsFound = true; 
-        }else if (empty($creditCard)) { 
-            $creditCardError=' <span style="color:red">Cannot be blank</span>'; 
-            // $errorsFound = true; 
-        }else if (empty($expiryDate)) {
-            $expiryDateError=' <span style="color:red">Cannot be blank</span>'; 
-            // $errorsFound = true; 
-        }else if (empty($payment)) {
-            $paymentError=' <span style="color:red">You must selcet at least 1 seat</span>'; 
-            // $errorsFound = true; 
-        }else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            $emailError=' <span style="color:red">This is not a valid email</span>'; 
-        }else if(!preg_match("/^(\(04\)|04|\+614)( ?\d){8}$/", $phoneNumber)){
-            $phoneNumberError=' <span style="color:red">You must use a valid Australian number</span>';
-        }else if(!preg_match("/^[a-zA-Z \-.']{1,100}$/", $name)){
-            $nameError=' <span style="color:red">You must use a western name</span>';
-        }else if(!preg_match("/\d( ?\d){13,18}/", $creditCard)){
-            $creditCardError=' <span style="color:red">You must use a valid Credit Card</span>';
+            $errorsFound = true; 
         }
         
 
-        //TODO: rearange the validation checks 
+        //Name validation checks
+        if (empty($name)) { 
+            $nameError=' <span style="color:red">Cannot be blank</span>'; 
+            $errorsFound = true; 
+        }else if(!preg_match("/^[a-zA-Z \-.']{1,100}$/", $name)){
+            $nameError=' <span style="color:red">You must use a western name</span>';
+            $errorsFound = true; 
+        }
+        
+        //Email validation checks
+        if (empty($email)) { 
+            $emailError=' <span style="color:red">Cannot be blank</span>'; 
+            $errorsFound = true; 
+        }else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $emailError=' <span style="color:red">This is not a valid email</span>';
+            $errorsFound = true;  
+        }
+        
+        //Phone validation checks
+        if (empty($phoneNumber)) { 
+            $phoneNumberError=' <span style="color:red">Cannot be blank</span>'; 
+            $errorsFound = true; 
+        }else if(!preg_match("/^(\(04\)|04|\+614)( ?\d){8}$/", $phoneNumber)){
+            $phoneNumberError=' <span style="color:red">You must use a valid Australian number</span>';
+            $errorsFound = true; 
+        }
 
-        //TODO: validate  expiry date
+        //Credit Card validation checks
+        if (empty($creditCard)) { 
+            $creditCardError=' <span style="color:red">Cannot be blank</span>'; 
+            $errorsFound = true; 
+        }else if(!preg_match("/\d( ?\d){13,18}/", $creditCard)){
+            $creditCardError=' <span style="color:red">You must use a valid Credit Card</span>';
+            $errorsFound = true; 
+        }
+        
+        //ExpiryDate validation checks
+        if (empty($expiryDate)) {
+            $expiryDateError=' <span style="color:red">Cannot be blank</span>'; 
+            $errorsFound = true; 
+        }else if(strtotime($date_next_month) > strtotime($expiryDate)){
+            $expiryDateError=' <span style="color:red">Expiry must be at least 1 month from now</span>';
+            $errorsFound = true; 
+        }
 
-        //TODO: make sure seat number carrys over
+        //Seat selected validation checks
+        if (empty($payment)) {
+            $paymentError=' <span style="color:red">You must selcet at least 1 seat</span>'; 
+            $errorsFound = true; 
+        }
+
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        else{
+        if(!$errorsFound){
             preShow($_POST);
             echo " <h1>well thats something</h1>";
             $_SESSION['cart'] = $_POST;
@@ -119,30 +121,8 @@
 
 
 
-
-            // else { 
-            // $height=$_POST['height']; 
-            // if (!is_numeric($height)) { 
-            // $heightError=' <span style="color:red">Must be numeric</span>'; 
-            // $errorsFound = true; 
-            // } 
-        // } 
-
-
-
-
-
-        
-        // echo $movie;
-        // $cart = $_POST;
-        // preShow($_POST);
-        // echo " <h1>well thats something</h1>";
-        // $_SESSION['cart'] = $_POST;
-        // preShow($_SESSION);
-
-        // header("Location: invoice.php");
-      }
-    //   else{
+    }
+  
 ?>
 
 <!DOCTYPE html>
@@ -603,7 +583,7 @@
 
                                     <label for="seats-STA">Adults
 
-                                        <select name="seats[STA]" id="seats-STA">
+                                        <select name="seats[STA]" id="seats-STA" value=''>
                                             <option value=''>please select</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>

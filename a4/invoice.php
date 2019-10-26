@@ -1,13 +1,38 @@
 <?php
-session_start();
-
-// if(!isset($_SESSION['cart'])){
-
-//     // header("Location: index.php");
-
-//   }
+include_once('tools.php');
 
 
+if(!isset($_SESSION['cart'])){
+    header("Location: index.php");
+}
+
+
+$movieArray = $_SESSION['cart']['movie'];
+$seatsArray = $_SESSION['cart']['seats'];
+$custArray = $_SESSION['cart']['cust'];
+
+echo "<br><br><br>";
+
+
+echo "this is to see if there is anything in _SESSION <br>";
+print_r($_SESSION);
+echo "<br><br><br> preShow";
+preShow($_SESSION);
+
+echo "<br><br><br> preShow of the 3";
+preShow($movieArray);
+preShow($seatsArray);
+preShow($custArray);
+
+
+
+
+echo "<br><br><br>";
+
+
+
+//this comes out blank
+// print_r($_POST);
 
 
 
@@ -15,131 +40,131 @@ session_start();
 
 
 
-$current_date = date("Y-m");
-echo "current_date is: " . $current_date ."<br>";
-// $date_to_compare = date("Y-m",time()+86400); //1 day later
-// if (strtotime($date_to_compare) > strtotime($current_date)) {
-//    echo "too late";
+// $current_date = date("Y-m");
+// echo "current_date is: " . $current_date ."<br>";
+// // $date_to_compare = date("Y-m",time()+86400); //1 day later
+// // if (strtotime($date_to_compare) > strtotime($current_date)) {
+// //    echo "too late";
+// // }
+
+// // echo "<br><br><br>";
+
+// // $current_date = $current_date + 1;
+// // echo "current_date +1 is: " . $current_date ."<br>";
+
+// // echo "<br><br><br>";
+
+// // $current_date = $current_date + 3;
+// // echo "current_date +3 is: " . $current_date ."<br>";
+
+// echo "<br><br><br>";
+
+// $current_year = date("Y");
+// echo "current_year is: " . $current_year ."<br>";
+
+// echo "<br><br><br>";
+
+// $current_month = date("m");
+// echo "current_month is: " . $current_month ."<br>";
+
+
+// echo "<br><br><br>";
+// $yearMonth = "$current_year" . "-" . "$current_month";
+
+// echo "current_month + current_year is: " . $yearMonth ."<br>";
+
+// echo "<br><br><br>";
+// if($current_month == 10){
+//     echo "current_month is indeed 10<br>";
 // }
 
 // echo "<br><br><br>";
+// $current_month = "0" . $current_month -1;
 
-// $current_date = $current_date + 1;
-// echo "current_date +1 is: " . $current_date ."<br>";
-
-// echo "<br><br><br>";
-
-// $current_date = $current_date + 3;
-// echo "current_date +3 is: " . $current_date ."<br>";
-
-echo "<br><br><br>";
-
-$current_year = date("Y");
-echo "current_year is: " . $current_year ."<br>";
-
-echo "<br><br><br>";
-
-$current_month = date("m");
-echo "current_month is: " . $current_month ."<br>";
+// echo "current_month - 1 is: " . $current_month ."<br>";
+// echo "current_month - 1 is: 0" . $current_month ."<br>";
 
 
-echo "<br><br><br>";
-$yearMonth = "$current_year" . "-" . "$current_month";
 
-echo "current_month + current_year is: " . $yearMonth ."<br>";
+// // echo "<br><br><br>";
+// // $current_month = $current_month +3;
 
-echo "<br><br><br>";
-if($current_month == 10){
-    echo "current_month is indeed 10<br>";
-}
-
-echo "<br><br><br>";
-$current_month = "0" . $current_month -1;
-
-echo "current_month - 1 is: " . $current_month ."<br>";
-echo "current_month - 1 is: 0" . $current_month ."<br>";
+// // echo "current_month + 3 is: " . $current_month ."<br>";
 
 
 
 // echo "<br><br><br>";
-// $current_month = $current_month +3;
+// $date_to_compare = "$yearMonth" . "-" . "$current_month";
+// echo "date_to_compare  ";
+// echo $date_to_compare;
+// echo "<br>current_date";
+// echo $current_date;
+// if (strtotime($date_to_compare) < strtotime($current_date)) {
+//     echo "too not a valid date";
+// }
+// echo "<br><br><br>";
+// echo 'Next month: '. date('Y-m-d', strtotime('+1 month')) ."\n";
 
-// echo "current_month + 3 is: " . $current_month ."<br>";
+// echo "<br><br><br>";
+// echo 'last month: '. date('Y-m-d', strtotime('-1 month')) ."\n";
 
-
-
-echo "<br><br><br>";
-$date_to_compare = "$yearMonth" . "-" . "$current_month";
-echo "date_to_compare  ";
-echo $date_to_compare;
-echo "<br>current_date";
-echo $current_date;
-if (strtotime($date_to_compare) < strtotime($current_date)) {
-    echo "too not a valid date";
-}
-echo "<br><br><br>";
-echo 'Next month: '. date('Y-m-d', strtotime('+1 month')) ."\n";
-
-echo "<br><br><br>";
-echo 'last month: '. date('Y-m-d', strtotime('-1 month')) ."\n";
-
-echo "<br><br><br>";
-echo 'in 5 months: '. date('Y-m-d', strtotime('-5 month')) ."\n";
+// echo "<br><br><br>";
+// echo 'in 5 months: '. date('Y-m-d', strtotime('-5 month')) ."\n";
 
 
 
-echo "<br><br><br>";
-echo "Y-m only";
-echo "<br><br><br>";
+// echo "<br><br><br>";
+// echo "Y-m only";
+// echo "<br><br><br>";
 
-echo 'Next month: '. date('Y-m', strtotime('+1 month')) ."\n";
+// echo 'Next month: '. date('Y-m', strtotime('+1 month')) ."\n";
 
-echo "<br><br><br>";
-echo 'last month: '. date('Y-m', strtotime('-1 month')) ."\n";
+// echo "<br><br><br>";
+// echo 'last month: '. date('Y-m', strtotime('-1 month')) ."\n";
 
-echo "<br><br><br>";
-echo 'in 5 months: '. date('Y-m', strtotime('-5 month')) ."\n";
+// echo "<br><br><br>";
+// echo 'in 5 months: '. date('Y-m', strtotime('-5 month')) ."\n";
 
-echo "<br><br><br>";
+// echo "<br><br><br>";
 
-echo "check if date is bigger than other date<br>";
+// echo "check if date is bigger than other date<br>";
 
-$current_date = date("Y-m");
-$date_to_compare = date('Y-m', strtotime('-1 month'));
+// $current_date = date("Y-m");
+// $date_to_compare = date('Y-m', strtotime('-1 month'));
 
-echo "date_to_compare";
-echo $date_to_compare;
-echo "<br>current_date";
-echo $current_date;
+// echo "date_to_compare";
+// echo $date_to_compare;
+// echo "<br>current_date";
+// echo $current_date;
 
-if (strtotime($date_to_compare) < strtotime($current_date)) {
-    echo "<br>date_to_compare is samller<br>";
-}
+// if (strtotime($date_to_compare) < strtotime($current_date)) {
+//     echo "<br>date_to_compare is samller<br>";
+// }
 
-if (strtotime($date_to_compare) > strtotime($current_date)) {
-    echo "date_to_compare is bigger<br>";
-}
+// if (strtotime($date_to_compare) > strtotime($current_date)) {
+//     echo "date_to_compare is bigger<br>";
+// }
 
-echo "<br><br><br>";
-echo "testing if a normal value works";
-echo "<br>";
-$date_to_compare = "2019-12";
+// echo "<br><br><br>";
+// echo "testing if a normal value works";
+// echo "<br>";
+// $date_to_compare = "2019-12";
 
-echo "date_to_compare   ";
-echo $date_to_compare;
-echo "<br>current_date   ";
-echo $current_date;
+// echo "date_to_compare   ";
+// echo $date_to_compare;
+// echo "<br>current_date   ";
+// echo $current_date;
 
-echo "<br>";
+// echo "<br>";
 
 
-if (strtotime($date_to_compare) > strtotime($current_date)) {
-    echo "date_to_compare is bigger<br>";
-}
+// if (strtotime($date_to_compare) > strtotime($current_date)) {
+//     echo "date_to_compare is bigger<br>";
+// }
 
-if (strtotime($date_to_compare) < strtotime($current_date)) {
-    echo "<br>date_to_compare is samller<br>";
-}
+// if (strtotime($date_to_compare) < strtotime($current_date)) {
+//     echo "<br>date_to_compare is samller<br>";
+// }
 
 
 
@@ -147,7 +172,12 @@ if (strtotime($date_to_compare) < strtotime($current_date)) {
 
 
 
-echo "<br><br><br>";
+// echo "<br><br><br>";
+// $date_to_compare = date('Y-m', strtotime('+8 month'));
+// echo "this is a final test<br>";
+// echo $date_to_compare;
+
+
 
 
 
@@ -181,8 +211,6 @@ echo "<br><br><br>";
 //     // $_SESSION['movie'] = $_POST['movie'];
 //   }
 
-echo "this is to see if there is anything in _SESSION <br>";
-print_r($_SESSION);
 
 
 // echo "<br><br><br>";
@@ -194,10 +222,7 @@ print_r($_SESSION);
 // print_r($movie);
 // echo "<br><br><br>";
 // echo $movie;
-echo "<br><br><br>";
 
-
-print_r($_POST);
 
 // $seats = $_POST['seats']['FCC'];
 // // $seatsSTA = $_POST['seats']['STA'];
